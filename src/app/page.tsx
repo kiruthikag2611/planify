@@ -8,18 +8,18 @@ import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 
 export default function Home() {
-  const { user, status, error } = useUser();
+  const { status } = useUser();
   const router = useRouter();
 
   useEffect(() => {
     if (status === 'authenticated') {
       router.replace('/dashboard');
     } else if (status === 'unauthenticated') {
-      router.replace('/login');
+      // Stay on the welcome page for unauthenticated users
     }
   }, [status, router]);
 
-  if (status === 'loading' || status === 'authenticated' || status === 'unauthenticated') {
+  if (status === 'loading') {
     return (
       <main className="flex min-h-screen flex-col items-center justify-center p-8">
         <PlanifyLogo className="h-24 w-24 text-primary animate-pulse" />
