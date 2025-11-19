@@ -2,11 +2,14 @@
 
 import { QuestionnaireProvider } from '@/context/QuestionnaireProvider';
 import type { ReactNode } from 'react';
+import { FirebaseClientProvider } from '@/firebase/client-provider';
 
 export function Providers({ children }: { children: ReactNode }) {
   return (
-    <QuestionnaireProvider>
-      {children}
-    </QuestionnaireProvider>
+    <FirebaseClientProvider>
+      <QuestionnaireProvider>
+        {children}
+      </QuestionnaireProvider>
+    </FirebaseClientProvider>
   );
 }

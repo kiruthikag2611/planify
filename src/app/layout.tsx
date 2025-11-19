@@ -4,6 +4,7 @@ import { Providers } from './providers';
 import { Toaster } from '@/components/ui/toaster';
 import { SidebarProvider, Sidebar, SidebarInset } from '@/components/ui/sidebar';
 import { AppSidebar } from '@/components/AppSidebar';
+import { FirebaseErrorListener } from '@/components/FirebaseErrorListener';
 
 export const metadata: Metadata = {
   title: 'Planify',
@@ -24,6 +25,7 @@ export default function RootLayout({
       </head>
       <body className="font-body antialiased">
         <Providers>
+          <FirebaseErrorListener />
           <SidebarProvider>
             <Sidebar>
               <AppSidebar />
