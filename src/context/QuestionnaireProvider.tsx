@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import React, { createContext, useContext, useState, ReactNode, useCallback } from 'react';
 
 type Category = 'academics' | 'personal' | null;
 type SubCategory = 'student' | 'professor' | 'management' | null;
@@ -28,11 +28,11 @@ export const QuestionnaireProvider = ({ children }: { children: ReactNode }) => 
     setAnswers(prev => ({ ...prev, ...answer }));
   };
 
-  const reset = () => {
+  const reset = useCallback(() => {
     setCategory(null);
     setSubCategory(null);
     setAnswers({});
-  };
+  }, []);
 
   const getFormattedAnswers = () => {
     if (!category) return null;
