@@ -3,6 +3,7 @@
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import {
+  Home,
   LayoutDashboard,
   Calendar,
   ClipboardList,
@@ -30,6 +31,7 @@ export function AppSidebar() {
   const pathname = usePathname()
 
   const menuItems = [
+    { href: "/", label: "Home", icon: Home },
     { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
     { href: "/calendar", label: "Calendar", icon: Calendar },
     { href: "/tasks", label: "Tasks & Activities", icon: ClipboardList },
@@ -57,7 +59,7 @@ export function AppSidebar() {
             <SidebarMenuItem key={item.href}>
               <SidebarMenuButton
                 asChild
-                isActive={pathname.startsWith(item.href)}
+                isActive={pathname === item.href}
               >
                 <Link href={item.href}>
                   <item.icon />
