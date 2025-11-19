@@ -75,8 +75,10 @@ export function QuestionnaireClientPage({
       setIsLoading(false);
 
       if (result.success && result.data) {
-        const scheduleData = encodeURIComponent(JSON.stringify(result.data));
-        router.push(`/schedule?data=${scheduleData}`);
+        // Storing schedule in session storage to be picked up by schedule page
+        // to avoid long URL.
+        sessionStorage.setItem('scheduleData', JSON.stringify(result.data));
+        router.push(`/schedule`);
       } else {
         toast({
           variant: "destructive",

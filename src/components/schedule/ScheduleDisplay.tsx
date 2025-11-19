@@ -1,7 +1,7 @@
 "use client";
 
-import { useSearchParams, useRouter } from 'next/navigation';
-import { useState, useMemo } from 'react';
+import { useRouter } from 'next/navigation';
+import { useState, useMemo, useEffect } from 'react';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { useQuestionnaire } from '@/context/QuestionnaireProvider';
@@ -11,7 +11,6 @@ import { Loader2 } from 'lucide-react';
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from '@/components/ui/alert-dialog';
 
 export function ScheduleDisplay() {
-  const searchParams = useSearchParams();
   const router = useRouter();
   const { reset, category, subCategory } = useQuestionnaire();
   const { toast } = useToast();
@@ -19,24 +18,28 @@ export function ScheduleDisplay() {
   const [isLoading, setIsLoading] = useState(false);
   const [optimizations, setOptimizations] = useState<string | null>(null);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [scheduleData, setScheduleData] = useState<any>(null);
 
-  const scheduleData = useMemo(() => {
-    const data = searchParams.get('data');
+  useEffect(() => {
+    const data = sessionStorage.getItem('scheduleData');
     if (data) {
       try {
-        return JSON.parse(decodeURIComponent(data));
+        setScheduleData(JSON.parse(data));
       } catch (e) {
         console.error("Failed to parse schedule data", e);
-        return { schedule: "Error: Could not display schedule." };
+        setScheduleData({ schedule: "Error: Could not display schedule." });
       }
     }
-    return null;
-  }, [searchParams]);
+  }, []);
 
   const handleStartOver = () => {
     reset();
     router.push('/');
   };
+  
+  const handleGoToDashboard = () => {
+    router.push('/dashboard');
+  }
 
   const handleOptimize = async () => {
     if (!scheduleData || !category || !subCategory) {
@@ -116,6 +119,7 @@ export function ScheduleDisplay() {
                 'Optimize Schedule'
               )}
             </Button>
+             <Button onClick={handleGoToDashboard} className="w-full sm:w-auto">Go to Dashboard</Button>
           </CardFooter>
         </Card>
       </div>
