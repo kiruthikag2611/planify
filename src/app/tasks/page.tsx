@@ -3,10 +3,11 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardTitle, CardContent, CardDescription } from "@/components/ui/card";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import { Plus, Search, Filter, Check, Clock, Edit, Users } from "lucide-react";
+import { Plus, Search, Filter, Check, Clock, Edit, Users, BookOpen } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { useState, useEffect } from "react";
+import Link from "next/link";
 
 const tasks = [
     {
@@ -42,6 +43,12 @@ export default function TasksPage() {
       <div className="flex items-center justify-between space-y-2">
         <h2 className="text-3xl font-bold tracking-tight">Tasks & Activities</h2>
         <div className="flex items-center space-x-2">
+           <Button asChild variant="outline">
+                <Link href="/tasks/exams">
+                    <BookOpen className="mr-2 h-4 w-4" />
+                    Exams
+                </Link>
+            </Button>
           <Button variant="ghost" size="icon">
             <Search className="h-5 w-5" />
           </Button>
