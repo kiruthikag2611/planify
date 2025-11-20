@@ -95,18 +95,17 @@ body {
     width: 100vw;
     height: 100vh;
     overflow: hidden;
-    background: linear-gradient(135deg, hsl(210, 80%, 25%), hsl(190, 80%, 30%), hsl(220, 50%, 20%));
+    background: linear-gradient(135deg, hsl(204, 100%, 90%), hsl(258, 100%, 92%), hsl(155, 68%, 88%), hsl(22, 100%, 89%));
     background-size: 400% 400%;
     animation: gradient-animation 25s ease infinite;
     z-index: -1;
   }
 
   .dark .animated-background {
-    background: linear-gradient(135deg, hsl(210, 80%, 10%), hsl(190, 70%, 15%), hsl(220, 40%, 8%));
+    background: linear-gradient(135deg, hsl(204, 20%, 20%), hsl(258, 20%, 25%), hsl(155, 15%, 22%), hsl(22, 25%, 20%));
     background-size: 400% 400%;
     animation: gradient-animation 25s ease infinite;
   }
-
 
   @keyframes gradient-animation {
     0% {
@@ -135,7 +134,7 @@ body {
   .shape:nth-child(1) {
     width: 400px;
     height: 400px;
-    background-color: hsl(190, 80%, 60%);
+    background-color: hsl(198, 80%, 70%); /* Baby Blue */
     top: -100px;
     left: -100px;
     animation: float 12s ease-in-out infinite;
@@ -144,7 +143,7 @@ body {
   .shape:nth-child(2) {
     width: 500px;
     height: 500px;
-    background-color: hsl(210, 80%, 60%);
+    background-color: hsl(258, 80%, 80%); /* Lavender */
     top: 10%;
     right: 5%;
     animation: float 15s ease-in-out infinite reverse;
@@ -153,7 +152,7 @@ body {
   .shape:nth-child(3) {
     width: 350px;
     height: 350px;
-    background-color: hsl(220, 50%, 70%);
+    background-color: hsl(155, 50%, 80%); /* Mint Green */
     bottom: -50px;
     left: 20%;
     animation: float 10s ease-in-out infinite;
@@ -162,7 +161,7 @@ body {
   .shape:nth-child(4) {
     width: 300px;
     height: 300px;
-    background-color: hsl(180, 60%, 50%);
+    background-color: hsl(22, 100%, 85%); /* Soft Peach */
     bottom: 5%;
     right: -80px;
     animation: float 18s ease-in-out infinite reverse;
@@ -171,7 +170,7 @@ body {
   .shape:nth-child(5) {
     width: 200px;
     height: 200px;
-    background-color: hsl(190, 80%, 60%);
+    background-color: hsl(198, 80%, 70%); /* Baby Blue */
     top: 50%;
     left: 45%;
     animation: float 14s ease-in-out infinite;
@@ -180,7 +179,7 @@ body {
    .shape:nth-child(6) {
     width: 250px;
     height: 250px;
-    background-color: hsl(220, 50%, 70%);
+    background-color: hsl(258, 80%, 80%); /* Lavender */
     top: 60%;
     left: -10%;
     animation: float 16s ease-in-out infinite reverse;
