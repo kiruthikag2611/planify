@@ -4,66 +4,66 @@
 
 @layer base {
   :root {
-    --background: 25 25% 98% / 0; /* Fully transparent to let body background show */
-    --foreground: 30 20% 98%; /* Changed to white */
-    --card: 30 40% 95% / 0.1; /* Translucent white for glassmorphism */
-    --card-foreground: 30 20% 95%; /* Changed to light gray */
-    --popover: 25 30% 95%;
-    --popover-foreground: 25 10% 15%;
-    --primary: 25 65% 55%;
-    --primary-foreground: 20 50% 98%;
-    --secondary: 25 30% 90%;
-    --secondary-foreground: 25 10% 20%;
-    --muted: 25 30% 90%;
-    --muted-foreground: 30 20% 80%; /* Changed for better contrast */
-    --accent: 25 30% 85%;
-    --accent-foreground: 25 10% 10%;
+    --background: 208 78% 15% / 0; /* Fully transparent to let body background show */
+    --foreground: 210 40% 98%;
+    --card: 207 71% 28% / 0.1; /* Translucent blue for glassmorphism */
+    --card-foreground: 210 40% 95%;
+    --popover: 208 78% 10%;
+    --popover-foreground: 210 40% 90%;
+    --primary: 208 78% 35%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 207 71% 28%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 207 71% 28%;
+    --muted-foreground: 210 40% 80%;
+    --accent: 207 71% 40%;
+    --accent-foreground: 210 40% 98%;
     --destructive: 0 70% 50%;
     --destructive-foreground: 0 0% 100%;
-    --border: 25 30% 50% / 0.2;
-    --input: 25 30% 50% / 0.15;
-    --ring: 25 65% 55%;
+    --border: 208 78% 35% / 0.2;
+    --input: 208 78% 35% / 0.15;
+    --ring: 208 78% 45%;
 
      /* Sidebar specific colors */
-    --sidebar-background: 30 40% 95% / 0.5;
-    --sidebar-foreground: 30 10% 20%;
-    --sidebar-primary: 25 65% 55%;
-    --sidebar-primary-foreground: 20 50% 98%;
-    --sidebar-accent: 30 40% 88%;
-    --sidebar-accent-foreground: 30 10% 10%;
-    --sidebar-border: 30 30% 50% / 0.2;
-    --sidebar-ring: 25 65% 55%;
+    --sidebar-background: 208 78% 15% / 0.5;
+    --sidebar-foreground: 210 40% 90%;
+    --sidebar-primary: 208 78% 45%;
+    --sidebar-primary-foreground: 210 40% 98%;
+    --sidebar-accent: 207 71% 28%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 208 78% 35% / 0.2;
+    --sidebar-ring: 208 78% 45%;
   }
 
   .dark {
-    --background: 30 5% 15% / 0; /* Fully transparent */
-    --foreground: 30 20% 98%; /* Changed to white */
-    --card: 30 10% 20% / 0.1; /* Translucent dark for glassmorphism */
-    --card-foreground: 30 20% 95%; /* Changed to light gray */
-    --popover: 30 5% 10%;
-    --popover-foreground: 30 20% 90%;
-    --primary: 25 65% 55%;
-    --primary-foreground: 20 50% 98%;
-    --secondary: 30 10% 25%;
-    --secondary-foreground: 30 20% 90%;
-    --muted: 30 10% 25%;
-    --muted-foreground: 30 20% 70%; /* Changed for better contrast */
-    --accent: 30 10% 30%;
-    --accent-foreground: 30 20% 90%;
+    --background: 208 78% 15% / 0; /* Fully transparent */
+    --foreground: 210 40% 98%;
+    --card: 207 71% 28% / 0.1; /* Translucent dark for glassmorphism */
+    --card-foreground: 210 40% 95%;
+    --popover: 208 78% 10%;
+    --popover-foreground: 210 40% 90%;
+    --primary: 208 78% 45%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 207 71% 28%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 207 71% 28%;
+    --muted-foreground: 210 40% 70%;
+    --accent: 207 71% 40%;
+    --accent-foreground: 210 40% 98%;
     --destructive: 0 60% 45%;
     --destructive-foreground: 0 0% 100%;
-    --border: 30 20% 80% / 0.2;
-    --input: 30 20% 80% / 0.15;
-    --ring: 25 65% 55%;
+    --border: 210 40% 80% / 0.2;
+    --input: 210 40% 80% / 0.15;
+    --ring: 208 78% 55%;
 
-    --sidebar-background: 30 10% 20% / 0.5;
-    --sidebar-foreground: 30 20% 90%;
-    --sidebar-primary: 25 65% 55%;
-    --sidebar-primary-foreground: 20 50% 98%;
-    --sidebar-accent: 30 10% 30%;
-    --sidebar-accent-foreground: 30 20% 90%;
-    --sidebar-border: 30 20% 80% / 0.2;
-    --sidebar-ring: 25 65% 55%;
+    --sidebar-background: 208 78% 10% / 0.5;
+    --sidebar-foreground: 210 40% 90%;
+    --sidebar-primary: 208 78% 45%;
+    --sidebar-primary-foreground: 210 40% 98%;
+    --sidebar-accent: 207 71% 28%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 210 40% 80% / 0.2;
+    --sidebar-ring: 208 78% 55%;
   }
 }
 
@@ -73,7 +73,7 @@
   }
   body {
     @apply bg-background text-foreground;
-    background-color: hsl(25, 20%, 85%); /* Fallback color */
+    background-color: hsl(208, 78%, 15%); /* Fallback color */
     background-size: cover;
     background-position: bottom center;
     background-attachment: fixed;
