@@ -18,7 +18,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const backgroundImage = PlaceHolderImages.find(img => img.id === 'illustrated-desk-background');
+  const backgroundImage = PlaceHolderImages.find(img => img.id === 'cozy-study-desk-illustration');
 
   return (
     <html lang="en" suppressHydrationWarning>
@@ -36,7 +36,7 @@ export default function RootLayout({
             backgroundAttachment: 'fixed',
         }}
       >
-        <div className="absolute inset-0 bg-black/20 z-0"></div>
+        <div className="absolute inset-0 bg-black/30 z-0"></div>
         <Providers>
           <FirebaseErrorListener />
           <SidebarProvider>

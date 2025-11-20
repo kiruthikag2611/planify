@@ -37,10 +37,10 @@
       "imageHint": "minimal desk coffee"
     },
     {
-      "id": "illustrated-desk-background",
-      "description": "A warm, cozy, playful digital illustration of a study desk from a top-view perspective. Include elements like an open spiral calendar planner, a notebook with pens and sticky notes, a cup of coffee with steam, round glasses, pens, leaves, small decorative plants, and soft organic patterns in the background. Use a warm beige base color with earthy tones like terracotta, olive green, and muted orange. All objects should have soft shadows and a friendly, hand-drawn aesthetic. The overall style should be clean, minimal, and playful — perfect as an app background without distracting the content.",
-      "imageUrl": "https://images.unsplash.com/photo-1519643225202-748a34d832b8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxjb3p5JTIwZGVzayUyMGlubHVzdHJhdGlvbnxlbnwwfHx8fDE3MjQ4OTc5OTd8MA&ixlib=rb-4.0.3&q=80&w=1920",
-      "imageHint": "desk illustration"
+      "id": "cozy-study-desk-illustration",
+      "description": "Create a soft, cozy, aesthetic background illustration for a productivity and timetable app. Style: warm pastel tones, minimalistic, clean, flat-illustration aesthetic. Include elements like a laptop, an open planner, calendar pages, study notes, pencils, glasses, a cup of coffee with steam, soft leaves around the edges, and light doodles. Composition should be top-down (desk view), with enough empty space in the center for UI content. Add gentle shadows, subtle textures, and warm lighting. Make it visually pleasing, calm, and motivating for students. No harsh colors. Aspect ratio: mobile portrait (1080x1920).",
+      "imageUrl": "https://images.unsplash.com/photo-1541599360875-af7758745c9c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzdHVkeSUyMGRlc2slMjBpbGx1c3RyYXRpb24lMjBwYXN0ZWx8ZW58MHx8fHwxNzI1NDkwMjUxfDA&ixlib=rb-4.0.3&q=80&w=1080",
+      "imageHint": "study desk illustration"
     }
   ]
 }
