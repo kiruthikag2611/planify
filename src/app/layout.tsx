@@ -35,7 +35,7 @@ export default function RootLayout({
             backgroundAttachment: 'fixed',
         }}
       >
-        <div className="absolute inset-0 bg-black/30 z-0"></div>
+        <div className="absolute inset-0 bg-black/20 z-0"></div>
         <Providers>
           <FirebaseErrorListener />
           <SidebarProvider>
