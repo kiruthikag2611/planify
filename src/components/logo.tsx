@@ -10,38 +10,70 @@ export function PlanifyLogo({ className }: { className?: string }) {
       aria-label="Planify Logo"
     >
       <defs>
-        <linearGradient id="logo-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#00A7B5" />
-          <stop offset="100%" stopColor="#0052D4" />
+        <radialGradient id="orbital-glow" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+          <stop offset="0%" stopColor="#00F2FE" stopOpacity="0.8"/>
+          <stop offset="70%" stopColor="#007BFF" stopOpacity="0.5"/>
+          <stop offset="100%" stopColor="#0A1931" stopOpacity="0" />
+        </radialGradient>
+        <linearGradient id="path-gradient-1" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#00F2FE" />
+          <stop offset="100%" stopColor="#00A7B5" />
         </linearGradient>
-        <filter id="logo-glow" x="-50%" y="-50%" width="200%" height="200%">
-          <feGaussianBlur stdDeviation="3" result="coloredBlur" />
-          <feMerge>
-            <feMergeNode in="coloredBlur" />
-            <feMergeNode in="SourceGraphic" />
-          </feMerge>
+        <linearGradient id="path-gradient-2" x1="0%" y1="100%" x2="100%" y2="0%">
+          <stop offset="0%" stopColor="#00C9FF" />
+          <stop offset="100%" stopColor="#92FE9D" />
+        </linearGradient>
+         <linearGradient id="path-gradient-3" x1="100%" y1="50%" x2="0%" y2="50%">
+          <stop offset="0%" stopColor="#007BFF" />
+          <stop offset="100%" stopColor="#00F2FE" />
+        </linearGradient>
+        <filter id="logo-glow-filter" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="3" result="coloredBlur" />
+            <feMerge>
+                <feMergeNode in="coloredBlur" />
+                <feMergeNode in="SourceGraphic" />
+            </feMerge>
         </filter>
       </defs>
-      
-      {/* <!-- Icon Group --> */}
-      <g transform="translate(10, 10)" filter="url(#logo-glow)">
-        {/* <!-- Abstract 'P' Monogram --> */}
-        {/* <!-- Stem of the 'P' --> */}
-        <path d="M 20 0 H 40 C 51.0457 0 60 8.9543 60 20 V 60 C 60 71.0457 51.0457 80 40 80 H 20 C 8.9543 80 0 71.0457 0 60 V 20 C 0 8.9543 8.9543 0 20 0 Z" fill="url(#logo-gradient)" />
-        
-        {/* <!-- Flowing element, creating the counter of the 'P' --> */}
-        <path d="M 40 20 H 50 C 55.5228 20 60 24.4772 60 30 V 50 C 60 55.5228 55.5228 60 50 60 H 40 V 20 Z" fill="#0E1A35" opacity="0.5" />
 
-        {/* <!-- Small accent shape --> */}
-         <circle cx="75" cy="10" r="5" fill="url(#logo-gradient)" opacity="0.8" />
+      {/* -- Logo Icon Group -- */}
+      <g transform="translate(10, 10)" filter="url(#logo-glow-filter)">
+        {/* -- Central Glowing Orb (The AI Core) -- */}
+        <circle cx="40" cy="40" r="12" fill="url(#orbital-glow)" />
+        <circle cx="40" cy="40" r="8" fill="white" fillOpacity="0.9" />
+
+        {/* -- Orbital Path 1 (Short & Inner) -- */}
+        <path 
+          d="M 40 10 A 30 30 0 1 1 10 40" 
+          stroke="url(#path-gradient-1)" 
+          strokeWidth="6" 
+          strokeLinecap="round"
+          fill="none" 
+        />
+        {/* -- Orbital Path 2 (Medium & Outer) -- */}
+        <path 
+          d="M 78 25 A 40 40 0 0 1 25 78" 
+          stroke="url(#path-gradient-2)" 
+          strokeWidth="6" 
+          strokeLinecap="round"
+          fill="none" 
+        />
+        {/* -- Orbital Path 3 (Long & Crossing) -- */}
+        <path 
+          d="M 2 70 A 55 55 0 0 0 70 2" 
+          stroke="url(#path-gradient-3)" 
+          strokeWidth="6" 
+          strokeLinecap="round"
+          fill="none" 
+        />
       </g>
       
-      {/* <!-- Text --> */}
+      {/* -- Text -- */}
       <g transform="translate(100, 20)">
         <text
             x="0"
             y="45"
-            fontFamily="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
+            fontFamily="'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
             fontSize="48"
             fontWeight="800"
             fill="hsl(var(--foreground))"
