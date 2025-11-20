@@ -10,37 +10,67 @@ import { useAuth, useFirestore } from '@/firebase/provider';
 import { useUser } from '@/firebase/auth/use-user';
 import { Button } from '@/components/ui/button';
 import { PlanifyLogo } from '@/components/logo';
-import { Chrome, Github } from 'lucide-react';
-import { useEffect } from 'react';
+import { Chrome, Github, Loader2 } from 'lucide-react';
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
-import { doc, getDoc } from 'firebase/firestore';
+import { doc, getDoc, setDoc, serverTimestamp } from 'firebase/firestore';
+
+type Provider = 'google' | 'github' | null;
 
 export default function LoginPage() {
   const auth = useAuth();
   const firestore = useFirestore();
   const router = useRouter();
   const { user, status } = useUser();
+  const [isSigningIn, setIsSigningIn] = useState<Provider>(null);
 
-  const handleSignIn = async (provider: GoogleAuthProvider | GithubAuthProvider) => {
+  const handleSignIn = async (providerType: 'google' | 'github') => {
     if (!auth) return;
+    
+    setIsSigningIn(providerType);
+
+    const provider = providerType === 'google' ? new GoogleAuthProvider() : new GithubAuthProvider();
+
     try {
-      await signInWithPopup(auth, provider);
+      const result = await signInWithPopup(auth, provider);
+      // After sign-in, the useEffect will handle redirection.
+      // The user object from the result can be used for immediate actions if needed.
+       if (result.user && firestore) {
+          const userRef = doc(firestore, 'users', result.user.uid);
+          const userDoc = await getDoc(userRef);
+          if (!userDoc.exists()) {
+            // This is a new user, create their document immediately
+             await setDoc(userRef, {
+              uid: result.user.uid,
+              email: result.user.email,
+              displayName: result.user.displayName,
+              photoURL: result.user.photoURL,
+              lastLogin: serverTimestamp(),
+              createdAt: serverTimestamp(),
+            }, { merge: true });
+          }
+       }
     } catch (error) {
       console.error('Sign-in error', error);
+      setIsSigningIn(null);
     }
   };
   
   useEffect(() => {
     if (status === 'authenticated' && user && firestore) {
-        const checkUser = async () => {
+        const checkUserOnboarding = async () => {
             const userDocRef = doc(firestore, 'users', user.uid);
             const userDoc = await getDoc(userDocRef);
             
-            // A simple check on creation vs last sign in time can also work,
-            // but checking the document is more robust against race conditions
-            // during the very first login.
-            const isNewUser = !userDoc.exists() || user.metadata.creationTime === user.metadata.lastSignInTime;
+            // A user is considered "new" if they don't have a profile document yet,
+            // or if the document exists but they haven't completed onboarding (e.g. no role set).
+            // A simple way to check is to see if a field that's set after onboarding exists.
+            // For now, checking if creation time is the same as last sign-in is a good proxy.
+            const creationTime = user.metadata.creationTime ? new Date(user.metadata.creationTime).getTime() : 0;
+            const lastSignInTime = user.metadata.lastSignInTime ? new Date(user.metadata.lastSignInTime).getTime() : 0;
+            
+            const isNewUser = !userDoc.exists() || (Math.abs(lastSignInTime - creationTime) < 2000);
 
             if (isNewUser) {
                 router.replace('/category');
@@ -48,10 +78,12 @@ export default function LoginPage() {
                 router.replace('/dashboard');
             }
         };
-        checkUser();
+        checkUserOnboarding();
     }
   }, [status, user, router, firestore]);
 
+  // Show full-page loader ONLY if we are already authenticated and waiting for redirect.
+  // Otherwise, show the login buttons.
   if (status === 'loading' || status === 'authenticated') {
     return (
         <div className="h-screen w-full flex items-center justify-center bg-background">
@@ -82,16 +114,20 @@ export default function LoginPage() {
         <div className="w-full space-y-4 mt-4">
           <Button
             className="w-full"
-            onClick={() => auth && handleSignIn(new GoogleAuthProvider())}
+            onClick={() => handleSignIn('google')}
+            disabled={!!isSigningIn}
           >
-            <Chrome className="mr-2 h-4 w-4" /> Sign in with Google
+            {isSigningIn === 'google' ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Chrome className="mr-2 h-4 w-4" />} 
+            Sign in with Google
           </Button>
           <Button
             variant="secondary"
             className="w-full"
-            onClick={() => auth && handleSignIn(new GithubAuthProvider())}
+            onClick={() => handleSignIn('github')}
+            disabled={!!isSigningIn}
           >
-            <Github className="mr-2 h-4 w-4" /> Sign in with GitHub
+            {isSigningIn === 'github' ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Github className="mr-2 h-4 w-4" />}
+            Sign in with GitHub
           </Button>
         </div>
       </div>
