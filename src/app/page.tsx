@@ -20,14 +20,14 @@ export default function Home() {
   
   if (status === 'loading' || status === 'authenticated') {
     return (
-      <main className="flex min-h-screen flex-col items-center justify-center p-8 bg-transparent">
+      <main className="flex min-h-screen flex-col items-center justify-center p-8 bg-cover bg-center" style={{ backgroundImage: "url('/background.jpg')"}}>
         <PlanifyLogo className="h-24 w-24 text-primary animate-pulse" />
       </main>
     );
   }
 
   return (
-    <main className="flex flex-col items-center justify-center min-h-screen p-4 sm:p-8 overflow-hidden bg-transparent">
+    <main className="flex flex-col items-center justify-center min-h-screen p-4 sm:p-8 overflow-hidden bg-cover bg-center" style={{ backgroundImage: "url('/background.jpg')"}}>
         <div className="relative z-10 flex flex-col items-center text-center max-w-4xl w-full">
             <div className="animate-fade-in flex flex-col items-center gap-4" style={{ animationDelay: '0.2s', animationDuration: '0.8s' }}>
                 <PlanifyLogo className="h-24 w-24 text-primary" />
