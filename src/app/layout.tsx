@@ -26,7 +26,7 @@ export default function RootLayout({
       <body 
         className="font-body antialiased"
         style={{
-            backgroundImage: `url('https://images.unsplash.com/photo-1521587760476-6c12a4b040da?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxjYXJ0b29uJTIwYm9va3MlMjBjb2ZmZWV8ZW58MHx8fHwxNzI0NjEwNzYxfDA&ixlib=rb-4.0.3&q=80&w=1920')`,
+            backgroundImage: `url('https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxtaW5pbWFsJTIwZGVzayUyMGNvZmZlZXxlbnwwfHx8fDE3MjQ2OTkyODV8MA&ixlib=rb-4.0.3&q=80&w=1920')`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundAttachment: 'fixed',
