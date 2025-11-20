@@ -28,9 +28,9 @@ export default function Home() {
 
   return (
     <main className="flex flex-col items-center justify-center min-h-screen p-4 sm:p-8 overflow-hidden bg-transparent">
-        <div className="relative z-10 flex flex-col items-center text-center max-w-4xl w-full p-6 rounded-xl bg-transparent">
+        <div className="relative z-10 flex flex-col items-center text-center max-w-4xl w-full p-6 rounded-xl">
             <div className="animate-fade-in flex flex-col items-center gap-6" style={{ animationDelay: '0.2s', animationDuration: '0.8s' }}>
-                <PlanifyLogo />
+                <PlanifyLogo className="w-40 h-40" />
                 <p className="mt-2 text-lg md:text-xl text-foreground/80 max-w-2xl mx-auto">
                     Smarter Schedule, Smoother Days.
                 </p>
