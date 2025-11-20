@@ -25,6 +25,12 @@ export default function RootLayout({
       </head>
       <body 
         className="font-body antialiased"
+        style={{
+            backgroundImage: `url('https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxkYXJrJTIwYWNhZGVtaWF8ZW58MHx8fHwxNzIxODMzODc4fDA&ixlib=rb-4.0.3&q=80&w=1920')`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundAttachment: 'fixed',
+        }}
       >
         <div className="absolute inset-0 bg-black/50 z-0"></div>
         <Providers>
