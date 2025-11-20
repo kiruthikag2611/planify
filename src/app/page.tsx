@@ -30,10 +30,10 @@ export default function Home() {
     <main className="flex flex-col items-center justify-center min-h-screen p-4 sm:p-8 overflow-hidden bg-transparent">
         <div className="relative z-10 flex flex-col items-center text-center max-w-4xl w-full p-6 rounded-xl">
             <div className="animate-fade-in flex flex-col items-center gap-6" style={{ animationDelay: '0.2s', animationDuration: '0.8s' }}>
-                <PlanifyLogo className="w-96 h-auto" />
+                <PlanifyLogo className="w-[400px] h-auto" />
             </div>
 
-            <div className="mt-12 animate-fade-in" style={{ animationDelay: '0.4s', animationDuration: '0.8s' }}>
+            <div className="mt-8 animate-fade-in" style={{ animationDelay: '0.4s', animationDuration: '0.8s' }}>
                 <Button asChild size="lg" className="shadow-lg shadow-black/20 hover:shadow-black/30 transition-shadow">
                     <Link href="/category">START</Link>
                 </Button>
