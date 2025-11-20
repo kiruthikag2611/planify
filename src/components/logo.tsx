@@ -28,7 +28,6 @@ export function PlanifyLogo({ className }: { className?: string }) {
         </radialGradient>
       </defs>
 
-      {/*-- Main Compass Arc --*/}
       <g filter="url(#compass-glow)">
         <path 
             d="M 15 75 A 40 40 0 1 1 85 75" 
@@ -38,28 +37,23 @@ export function PlanifyLogo({ className }: { className?: string }) {
             fill="none" 
         />
 
-        {/*-- Compass Markers --*/}
         <path d="M 50 11 L 50 19" stroke="hsl(var(--foreground))" strokeWidth="2.5" strokeLinecap="round" opacity="0.6" />
         <path d="M 23 25 L 28 30" stroke="hsl(var(--foreground))" strokeWidth="2.5" strokeLinecap="round" opacity="0.6" />
         <path d="M 77 25 L 72 30" stroke="hsl(var(--foreground))" strokeWidth="2.5" strokeLinecap="round" opacity="0.6" />
         
-        {/*-- Highlighted Marker --*/}
         <g>
             <path d="M 33 45 L 39 50" stroke="#FDE047" strokeWidth="3" strokeLinecap="round" />
             <circle cx="31" cy="43" r="3" fill="#FDE047" />
         </g>
       </g>
       
-      {/*-- Central Pointer --*/}
       <g transform="rotate(30 50 50)">
         <path d="M 50 50 L 50 20 L 53 23 M 50 20 L 47 23" stroke="hsl(var(--foreground))" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
       </g>
       
-      {/*-- Center glow --*/}
       <circle cx="50" cy="50" r="10" fill="url(#center-glow)" opacity="0.8" />
        <circle cx="50" cy="50" r="2.5" fill="hsl(var(--foreground))" />
 
-      {/* -- Text -- */}
       <text
           x="50"
           y="95"
