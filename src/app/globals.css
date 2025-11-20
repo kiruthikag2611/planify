@@ -4,37 +4,47 @@
 
 @layer base {
   :root {
-    --background: 208 78% 15% / 0; /* Fully transparent to let body background show */
-    --foreground: 210 40% 98%;
-    --card: 207 71% 28% / 0.1; /* Translucent blue for glassmorphism */
-    --card-foreground: 210 40% 95%;
-    --popover: 208 78% 10%;
-    --popover-foreground: 210 40% 90%;
-    --primary: 208 78% 35%;
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+ 
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+ 
+    --primary: 222.2 47.4% 11.2%;
     --primary-foreground: 210 40% 98%;
-    --secondary: 207 71% 28%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 207 71% 28%;
-    --muted-foreground: 210 40% 80%;
-    --accent: 207 71% 40%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 70% 50%;
-    --destructive-foreground: 0 0% 100%;
-    --border: 208 78% 35% / 0.2;
-    --input: 208 78% 35% / 0.15;
-    --ring: 208 78% 45%;
+ 
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+ 
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+ 
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+ 
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
 
-     /* Sidebar specific colors */
-    --sidebar-background: 208 78% 15% / 0.5;
-    --sidebar-foreground: 210 40% 90%;
-    --sidebar-primary: 208 78% 45%;
-    --sidebar-primary-foreground: 210 40% 98%;
-    --sidebar-accent: 207 71% 28%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+ 
+    --radius: 0.5rem;
+
+    /* Sidebar specific colors */
+    --sidebar-background: 222.2 84% 4.9% / 0.95;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 210 40% 98%;
+    --sidebar-primary-foreground: 222.2 47.4% 11.2%;
+    --sidebar-accent: 210 40% 98% / 0.1;
     --sidebar-accent-foreground: 210 40% 98%;
-    --sidebar-border: 208 78% 35% / 0.2;
-    --sidebar-ring: 208 78% 45%;
+    --sidebar-border: 210 40% 98% / 0.1;
+    --sidebar-ring: 210 40% 98%;
   }
-
+ 
   .dark {
     --background: 208 78% 15% / 0; /* Fully transparent */
     --foreground: 210 40% 98%;
@@ -74,11 +84,16 @@
   body {
     @apply bg-background text-foreground;
     background-color: hsl(208, 78%, 15%); /* Fallback color */
+    background-image: linear-gradient(135deg, #E4F3FF 0%, #FAD9E2 100%);
     background-size: cover;
     background-position: bottom center;
     background-attachment: fixed;
     font-family: 'Inter', sans-serif;
     position: relative;
     z-index: 0;
+  }
+  .dark body {
+     background-color: hsl(208, 78%, 15%); /* Fallback color */
+     background-image: none;
   }
 }
