@@ -97,12 +97,19 @@ export default {
           '50%': { transform: 'scale(1.05) translate(-2%, -2%)' },
           '100%': { transform: 'scale(1.05) translate(2%, 2%)' },
         },
+        'wobble': {
+          '0%, 100%': { transform: 'rotate(0deg) scale(1)' },
+          '25%': { transform: 'rotate(-5deg) scale(1.1)' },
+          '50%': { transform: 'rotate(5deg) scale(1.1)' },
+          '75%': { transform: 'rotate(-2deg) scale(1.1)' },
+        }
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
         'fade-in': 'fade-in 0.5s ease-out forwards',
         'bg-pan': 'bg-pan 30s ease-in-out infinite',
+        'wobble': 'wobble 0.5s ease-in-out',
       },
     },
   },

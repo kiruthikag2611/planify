@@ -8,7 +8,7 @@ import { FirebaseErrorListener } from '@/components/FirebaseErrorListener';
 
 export const metadata: Metadata = {
   title: 'Planify',
-  description: 'Smarter Schedule, Smoother Days.',
+  description: 'SMARTER SCHEDULES! SMOOTHER DAYS!',
 };
 
 export default function RootLayout({

@@ -44,13 +44,13 @@ export default function Home() {
       />
       <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent z-10"></div>
       <div className="flex flex-col items-center gap-6 text-center z-20 relative">
-        <PlanifyLogo className="h-24 w-24 text-primary drop-shadow-lg" />
+        <PlanifyLogo className="h-24 w-24 text-primary drop-shadow-lg transition-transform duration-300 hover:animate-wobble" />
         <div>
           <h1 className="text-5xl font-bold font-headline text-foreground">
-            Planify
+            PLANIFY
           </h1>
           <p className="mt-2 text-lg text-muted-foreground">
-            Smarter Schedule, Smoother Days.
+            SMARTER SCHEDULES! SMOOTHER DAYS!
           </p>
         </div>
         <Button asChild size="lg" className="mt-8 shadow-lg">
