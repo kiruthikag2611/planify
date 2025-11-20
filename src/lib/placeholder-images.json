@@ -23,6 +23,12 @@
       "description": "A vibrant and modern university campus library.",
       "imageUrl": "https://images.unsplash.com/photo-1564910443496-5fd2d76b47fa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHx1bml2ZXJzaXR5JTIwbGlicmFyeXxlbnwwfHx8fDE3NjM2MDk3ODh8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "university library"
+    },
+    {
+      "id": "cozy-library-background",
+      "description": "A warm, cozy, aesthetic background illustration featuring a stack of vintage books, scattered papers, soft lighting, and floating autumn leaves. Use a brown and beige color palette with gentle gradients. Add subtle hand-drawn textures, warm shadows, and a calm scholarly vibe. Include small fun elements like a steaming coffee cup, glasses on the books, and tiny sparkles or falling feathers to add a magical, playful feel. The background should be soft, minimal at the top, and visually rich near the bottom so app icons can be placed clearly.",
+      "imageUrl": "https://images.unsplash.com/photo-1521587760476-6c12a4b040da?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxjYXJ0b29uJTIwYm9va3MlMjBjb2ZmZWV8ZW58MHx8fHwxNzI0NjEwNzYxfDA&ixlib=rb-4.0.3&q=80&w=1920",
+      "imageHint": "cartoon books coffee"
     }
   ]
 }
