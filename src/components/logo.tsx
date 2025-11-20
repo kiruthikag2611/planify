@@ -10,60 +10,46 @@ export function PlanifyLogo({ className }: { className?: string }) {
       aria-label="Planify Logo"
     >
       <defs>
-        <linearGradient id="pencil-grad" x1="45" y1="50" x2="110" y2="80">
-          <stop stopColor="#FFD700" />
-          <stop offset="1" stopColor="#FFA500" />
+        <linearGradient id="notebook-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style={{stopColor: 'hsl(190, 80%, 85%)'}} />
+          <stop offset="50%" style={{stopColor: 'hsl(240, 80%, 90%)'}} />
+          <stop offset="100%" style={{stopColor: 'hsl(150, 80%, 88%)'}} />
         </linearGradient>
-        <linearGradient id="bot-body-grad" x1="68" y1="55" x2="68" y2="85" gradientUnits="userSpaceOnUse">
-          <stop stopColor="#00BFFF" />
-          <stop offset="1" stopColor="#1E90FF" />
-        </linearGradient>
-        <radialGradient id="bulb-glow" cx="0" cy="0" r="1" gradientTransform="translate(68 45) rotate(90) scale(22)">
-          <stop stopColor="white" stopOpacity="1" />
-          <stop offset="0.7" stopColor="#FBBF24" stopOpacity="0.8" />
-          <stop offset="1" stopColor="#FBBF24" stopOpacity="0" />
-        </radialGradient>
-        <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-          <feGaussianBlur stdDeviation="3.5" result="coloredBlur"/>
+        <filter id="soft-glow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+            <feMerge>
+                <feMergeNode in="coloredBlur"/>
+                <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+        </filter>
+        <filter id="drop-shadow" x="-30%" y="-30%" width="160%" height="160%">
+          <feGaussianBlur in="SourceAlpha" stdDeviation="2" result="blur"/>
+          <feOffset dy="2"/>
           <feMerge>
-            <feMergeNode in="coloredBlur"/>
+            <feMergeNode/>
             <feMergeNode in="SourceGraphic"/>
           </feMerge>
         </filter>
       </defs>
 
-      <g transform="translate(15, -10)">
+      <g transform="translate(15, 0)">
         
-        <path d="M40 50 L120 80 L40 110 L40 50 Z" fill="#2C3E50" opacity="0.1" transform="translate(5, 5)"/>
-        
-        <g>
-          <path d="M40 50 L120 80 L40 110 L40 50 Z" fill="url(#pencil-grad)"/>
-          <path d="M40 50 L20 65 L40 80 Z" fill="#E6C478" />
-          <path d="M20 65 L28 65 L40 55 L40 75 Z" fill="#C4A660" />
-          <path d="M120 80 L140 70 L135 80 L140 90 Z" fill="#FF4500" filter="url(#glow)"/>
-          <path d="M135 80 L150 75 L145 80 L150 85 Z" fill="#FFD700" filter="url(#glow)"/>
-        </g>
-        
-        <g transform="translate(10, 0)">
-          <rect x="53" y="60" width="30" height="25" rx="8" fill="url(#bot-body-grad)"/>
-          <rect x="58" y="58" width="20" height="15" rx="4" fill="#FFFFFF" fillOpacity="0.3"/>
-          <path d="M60 55 C60 50, 76 50, 76 55 L71 60 L65 60 L60 55Z" fill="#708090"/>
+        <g filter="url(#drop-shadow)" style={{ opacity: 0.8 }}>
+          <path d="M 40 25 C 30 25, 25 30, 25 40 L 25 80 C 25 90, 30 95, 40 95 L 90 95 C 100 95, 105 90, 105 80 L 105 40 C 105 30, 100 25, 90 25 Z" fill="url(#notebook-grad)" />
           
-          <circle cx="68" cy="45" r="15" fill="#FBBF24"/>
-          <circle cx="68" cy="45" r="20" fill="url(#bulb-glow)" />
-          <path d="M63 38 Q 68 35, 73 38" stroke="white" strokeWidth="2" fill="none" strokeLinecap="round" />
+          <path d="M 65 25 L 65 95" stroke="#FFFFFF" strokeWidth="2.5" strokeOpacity="0.5" />
+          
+          <path d="M 35 45 L 55 45" stroke="#FFFFFF" strokeWidth="2" strokeOpacity="0.7" strokeLinecap="round" />
+          <path d="M 35 60 L 55 60" stroke="#FFFFFF" strokeWidth="2" strokeOpacity="0.7" strokeLinecap="round" />
+          <path d="M 35 75 L 55 75" stroke="#FFFFFF" strokeWidth="2" strokeOpacity="0.7" strokeLinecap="round" />
+          
+          <path d="M75 55 L85 68 L100 50" stroke="#FFFFFF" strokeWidth="6" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+        </g>
 
-          <circle cx="62" cy="72" r="3" fill="white" />
-          <circle cx="74" cy="72" r="3" fill="white" />
-          <circle cx="63" cy="73" r="1.5" fill="black" />
-          <circle cx="75" cy="73" r="1.5" fill="black" />
-          
-          <path d="M65 80 Q 68 84, 71 80" stroke="#005EB8" strokeWidth="1.5" fill="none" strokeLinecap="round" />
-        </g>
       </g>
       
       <text
-        x="285"
+        x="265"
         y="75"
         fontFamily="Inter, sans-serif"
         fontSize="50"
@@ -71,8 +57,8 @@ export function PlanifyLogo({ className }: { className?: string }) {
         fill="white"
         textAnchor="middle"
         style={{
-          letterSpacing: '0.02em',
-          textShadow: '0px 2px 5px rgba(0, 0, 0, 0.2)',
+          letterSpacing: '0.01em',
+          textShadow: '0px 2px 5px rgba(0, 0, 0, 0.15)',
         }}
       >
         PLANIFY
