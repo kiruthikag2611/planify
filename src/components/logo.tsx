@@ -1,24 +1,18 @@
 import { cn } from "@/lib/utils";
 import type { SVGProps } from "react";
+import Image from 'next/image';
 
-export function PlanifyLogo(props: SVGProps<SVGSVGElement>) {
+// This component now renders the new logo from a static URL for consistency.
+// It can be used anywhere in the app.
+export function PlanifyLogo(props: { className?: string }) {
   return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      {...props}
-    >
-      <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" />
-      <polyline points="14 2 14 8 20 8" />
-      <path d="M12 12v6" />
-      <path d="M12 12H9" />
-      <path d="M15 12h-3" />
-      <path d="M15 18h-3" />
-    </svg>
+    <Image
+      src="https://storage.googleapis.com/aai-web-samples/planify-logo.png"
+      alt="Planify Logo"
+      width={100}
+      height={100}
+      className={cn(props.className)}
+      priority
+    />
   );
 }
