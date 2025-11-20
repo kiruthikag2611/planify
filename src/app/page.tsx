@@ -6,10 +6,13 @@ import { PlanifyLogo } from '@/components/logo';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import { useUser } from '@/firebase/auth/use-user';
+import { PlaceHolderImages } from '@/lib/placeholder-images';
 
 export default function Home() {
   const { status } = useUser();
   const router = useRouter();
+
+  const welcomeImage = PlaceHolderImages.find(p => p.id === 'welcome-background');
 
   useEffect(() => {
     // If user is already logged in, skip the intro screens.
@@ -20,14 +23,14 @@ export default function Home() {
   
   if (status === 'loading' || status === 'authenticated') {
     return (
-      <main className="flex min-h-screen flex-col items-center justify-center p-8 bg-cover bg-center" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1434030216411-0b793f4b4173?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxzdHVkZW50JTIwc3R1ZHlpbmd8ZW58MHx8fHwxNzYzNTE3MDQyfDA&ixlib=rb-4.1.0&q=80&w=1080')"}}>
+      <main className="flex min-h-screen flex-col items-center justify-center p-8 bg-cover bg-center" style={{ backgroundImage: `url(${welcomeImage?.imageUrl})`}}>
         <PlanifyLogo className="h-24 w-24 text-primary animate-pulse" />
       </main>
     );
   }
 
   return (
-    <main className="flex flex-col items-center justify-center min-h-screen p-4 sm:p-8 overflow-hidden bg-cover bg-center" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1434030216411-0b793f4b4173?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxzdHVkZW50JTIwc3R1ZHlpbmd8ZW58MHx8fHwxNzYzNTE3MDQyfDA&ixlib=rb-4.1.0&q=80&w=1080')"}}>
+    <main className="flex flex-col items-center justify-center min-h-screen p-4 sm:p-8 overflow-hidden bg-cover bg-center" style={{ backgroundImage: `url(${welcomeImage?.imageUrl})`}}>
         <div className="relative z-10 flex flex-col items-center text-center max-w-4xl w-full p-6 rounded-xl bg-card/50 backdrop-blur-sm border border-white/10 shadow-lg">
             <div className="animate-fade-in flex flex-col items-center gap-4" style={{ animationDelay: '0.2s', animationDuration: '0.8s' }}>
                 <PlanifyLogo className="h-24 w-24 text-primary" />
