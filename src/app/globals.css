@@ -8,25 +8,25 @@ body {
 
 @layer base {
   :root {
-    --background: 210 20% 96%;
+    --background: 210 20% 96% / 0;
     --foreground: 0 0% 3.9%;
     --card: 0 0% 100%;
     --card-foreground: 0 0% 3.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 3.9%;
-    --primary: 195 80% 30%;
+    --primary: 180 82% 35%;
     --primary-foreground: 0 0% 98%;
     --secondary: 0 0% 96.1%;
     --secondary-foreground: 0 0% 9%;
     --muted: 0 0% 96.1%;
     --muted-foreground: 0 0% 45.1%;
-    --accent: 195 80% 95%;
-    --accent-foreground: 195 80% 25%;
+    --accent: 180 50% 95%;
+    --accent-foreground: 180 82% 25%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
     --border: 0 0% 89.8%;
     --input: 0 0% 89.8%;
-    --ring: 195 80% 30%;
+    --ring: 180 82% 35%;
     --chart-1: 12 76% 61%;
     --chart-2: 173 58% 39%;
     --chart-3: 197 37% 24%;
@@ -43,13 +43,13 @@ body {
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
   .dark {
-    --background: 240 10% 3.9%;
+    --background: 240 10% 3.9% / 0;
     --foreground: 0 0% 98%;
     --card: 240 10% 3.9%;
     --card-foreground: 0 0% 98%;
     --popover: 240 10% 3.9%;
     --popover-foreground: 0 0% 98%;
-    --primary: 195 80% 40%;
+    --primary: 180 82% 45%;
     --primary-foreground: 0 0% 98%;
     --secondary: 0 0% 14.9%;
     --secondary-foreground: 0 0% 98%;
@@ -61,7 +61,7 @@ body {
     --destructive-foreground: 0 0% 98%;
     --border: 0 0% 14.9%;
     --input: 0 0% 14.9%;
-    --ring: 195 80% 40%;
+    --ring: 180 82% 45%;
     --chart-1: 220 70% 50%;
     --chart-2: 160 60% 45%;
     --chart-3: 30 80% 55%;
@@ -83,6 +83,122 @@ body {
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-transparent text-foreground;
   }
+}
+
+@layer base {
+  .animated-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background: linear-gradient(
+      135deg,
+      #cfe7ff,
+      #c7f3e3,
+      #e4d7ff,
+      #ffd9c7,
+      #ffffff
+    );
+    background-size: 600% 600%;
+    animation: gradient-animation 20s ease infinite;
+    z-index: -1;
+  }
+
+  @keyframes gradient-animation {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  .shape {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.5;
+  }
+
+  .shape:nth-child(1) {
+    width: 400px;
+    height: 400px;
+    background-color: #c7f3e3;
+    top: -100px;
+    left: -100px;
+    animation: float 12s ease-in-out infinite;
+  }
+
+  .shape:nth-child(2) {
+    width: 500px;
+    height: 500px;
+    background-color: #cfe7ff;
+    top: 10%;
+    right: 5%;
+    animation: float 15s ease-in-out infinite reverse;
+  }
+
+  .shape:nth-child(3) {
+    width: 350px;
+    height: 350px;
+    background-color: #e4d7ff;
+    bottom: -50px;
+    left: 20%;
+    animation: float 10s ease-in-out infinite;
+  }
+  
+  .shape:nth-child(4) {
+    width: 300px;
+    height: 300px;
+    background-color: #ffd9c7;
+    bottom: 5%;
+    right: -80px;
+    animation: float 18s ease-in-out infinite reverse;
+  }
+
+  .shape:nth-child(5) {
+    width: 200px;
+    height: 200px;
+    background-color: #c7f3e3;
+    top: 50%;
+    left: 45%;
+    animation: float 14s ease-in-out infinite;
+  }
+
+   .shape:nth-child(6) {
+    width: 250px;
+    height: 250px;
+    background-color: #e4d7ff;
+    top: 60%;
+    left: -10%;
+    animation: float 16s ease-in-out infinite reverse;
+  }
+
+  @keyframes float {
+    0% {
+      transform: translateY(0px) translateX(0px) scale(1);
+    }
+    50% {
+      transform: translateY(-40px) translateX(30px) scale(1.05);
+    }
+    100% {
+      transform: translateY(0px) translateX(0px) scale(1);
+    }
+  }
+}
+
+html.dark .animated-background {
+  opacity: 0.7;
+}
+
+html.dark .shape {
+  filter: blur(120px);
+  opacity: 0.3;
 }

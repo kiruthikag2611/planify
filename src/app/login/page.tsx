@@ -1,14 +1,10 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { useAuth } from '@/firebase/provider';
 import { useUser } from '@/firebase/auth/use-user';
 import { Button } from '@/components/ui/button';
 import { PlanifyLogo } from '@/components/logo';
-import { Loader2 } from 'lucide-react';
 import { useEffect } from 'react';
-import Image from 'next/image';
-import { PlaceHolderImages } from '@/lib/placeholder-images';
 import Link from 'next/link';
 
 export default function LoginPage() {
@@ -23,24 +19,15 @@ export default function LoginPage() {
 
   if (status === 'loading' || status === 'authenticated') {
     return (
-      <div className="h-screen w-full flex items-center justify-center bg-background">
+      <div className="h-screen w-full flex items-center justify-center bg-transparent">
         <PlanifyLogo className="h-20 w-20 text-primary animate-pulse" />
       </div>
     );
   }
 
   return (
-    <div className="h-screen w-full flex items-center justify-center relative bg-background overflow-hidden">
-      <Image
-        src={PlaceHolderImages[1].imageUrl}
-        alt={PlaceHolderImages[1].description}
-        data-ai-hint={PlaceHolderImages[1].imageHint}
-        fill
-        className="object-cover z-0 animate-bg-pan"
-        priority
-      />
-      <div className="absolute inset-0 bg-black/50 z-10"></div>
-      <div className="relative z-20 flex flex-col items-center gap-6 text-center p-8 max-w-sm w-full bg-background/80 backdrop-blur-sm rounded-xl shadow-2xl">
+    <div className="h-screen w-full flex items-center justify-center relative bg-transparent overflow-hidden">
+      <div className="relative z-20 flex flex-col items-center gap-6 text-center p-8 max-w-sm w-full bg-background/30 backdrop-blur-lg rounded-xl shadow-2xl border border-white/20">
         <PlanifyLogo className="h-20 w-20 text-primary" />
         <div>
           <h1 className="text-4xl font-bold font-headline text-primary">

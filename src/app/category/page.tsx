@@ -4,7 +4,7 @@ import { GraduationCap, User, ArrowLeft } from "lucide-react";
 
 export default function CategoryPage() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-8">
+    <main className="flex min-h-screen flex-col items-center justify-center p-8 bg-transparent">
       <Link href="/" className="absolute top-8 left-8 flex items-center gap-2 text-primary">
         <ArrowLeft className="h-4 w-4" />
         <span>Back</span>
@@ -14,7 +14,7 @@ export default function CategoryPage() {
         <p className="text-muted-foreground">Select one to get started.</p>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-8 w-full">
           <Link href="/category/academics">
-            <Card className="hover:bg-accent hover:border-primary/50 transition-all duration-300 py-8 shadow-md hover:shadow-xl">
+            <Card className="hover:bg-accent/50 hover:border-primary/50 transition-all duration-300 py-8 shadow-md hover:shadow-xl bg-card/50 backdrop-blur-sm">
               <CardHeader className="items-center gap-4">
                 <GraduationCap className="h-12 w-12 text-primary" />
                 <CardTitle className="font-headline text-2xl">Academics</CardTitle>
@@ -22,7 +22,7 @@ export default function CategoryPage() {
             </Card>
           </Link>
           <Link href="/category/personal">
-            <Card className="hover:bg-accent hover:border-primary/50 transition-all duration-300 py-8 shadow-md hover:shadow-xl">
+            <Card className="hover:bg-accent/50 hover:border-primary/50 transition-all duration-300 py-8 shadow-md hover:shadow-xl bg-card/50 backdrop-blur-sm">
               <CardHeader className="items-center gap-4">
                 <User className="h-12 w-12 text-primary" />
                 <CardTitle className="font-headline text-2xl">Personal</CardTitle>

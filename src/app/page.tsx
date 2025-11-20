@@ -24,7 +24,7 @@ export default function Home() {
   // Show a loading state while checking auth
   if (status === 'loading') {
     return (
-      <main className="flex min-h-screen flex-col items-center justify-center p-8 bg-background">
+      <main className="flex min-h-screen flex-col items-center justify-center p-8 bg-transparent">
         <PlanifyLogo className="h-24 w-24 text-primary animate-pulse" />
       </main>
     );
@@ -33,16 +33,7 @@ export default function Home() {
   // This content is primarily for users who land here before being redirected.
   // Or for scenarios where JavaScript is disabled.
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-8 bg-background overflow-hidden">
-       <Image
-        src={PlaceHolderImages[0].imageUrl}
-        alt={PlaceHolderImages[0].description}
-        data-ai-hint={PlaceHolderImages[0].imageHint}
-        fill
-        className="object-cover z-0 animate-bg-pan"
-        priority
-      />
-      <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent z-10"></div>
+    <main className="flex min-h-screen flex-col items-center justify-center p-8 bg-transparent">
       <div className="flex flex-col items-center gap-6 text-center z-20 relative">
         <PlanifyLogo className="h-24 w-24 text-primary drop-shadow-lg transition-transform duration-300 hover:animate-wobble" />
         <div>

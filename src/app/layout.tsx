@@ -5,6 +5,7 @@ import { Toaster } from '@/components/ui/toaster';
 import { SidebarProvider, Sidebar, SidebarInset } from '@/components/ui/sidebar';
 import { AppSidebar } from '@/components/AppSidebar';
 import { FirebaseErrorListener } from '@/components/FirebaseErrorListener';
+import { AnimatedBackground } from '@/components/ui/animated-background';
 
 export const metadata: Metadata = {
   title: 'Planify',
@@ -26,6 +27,7 @@ export default function RootLayout({
       <body className="font-body antialiased">
         <Providers>
           <FirebaseErrorListener />
+          <AnimatedBackground />
           <SidebarProvider>
             <Sidebar>
               <AppSidebar />

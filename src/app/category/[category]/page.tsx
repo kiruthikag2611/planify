@@ -43,12 +43,12 @@ export default function SubCategoryPage() {
   const categoryTitle = category.charAt(0).toUpperCase() + category.slice(1);
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-8">
+    <main className="flex min-h-screen flex-col items-center justify-center p-8 bg-transparent">
       <Link href="/category" className="absolute top-8 left-8 flex items-center gap-2 text-primary">
          <ArrowLeft className="h-4 w-4" />
         <span>Back</span>
       </Link>
-      <Card className="w-full max-w-md p-8 shadow-lg">
+      <Card className="w-full max-w-md p-8 shadow-lg bg-card/50 backdrop-blur-sm">
         <div className="flex flex-col items-center gap-4 text-center">
           <h1 className="text-3xl font-bold font-headline">
             {categoryTitle}: Select Your Role

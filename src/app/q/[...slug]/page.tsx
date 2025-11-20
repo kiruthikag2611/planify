@@ -32,12 +32,14 @@ export default function QuestionPage({ params }: QuestionPageProps) {
   const currentQuestion = questionSet[questionIndex];
 
   return (
-    <QuestionnaireClientPage
-      category={category}
-      subCategory={subCategory}
-      questionIndex={questionIndex}
-      currentQuestion={currentQuestion}
-      totalQuestions={totalQuestions}
-    />
+    <div className='bg-transparent'>
+      <QuestionnaireClientPage
+        category={category}
+        subCategory={subCategory}
+        questionIndex={questionIndex}
+        currentQuestion={currentQuestion}
+        totalQuestions={totalQuestions}
+      />
+    </div>
   );
 }

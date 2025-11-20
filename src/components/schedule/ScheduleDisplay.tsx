@@ -79,8 +79,8 @@ export function ScheduleDisplay() {
 
   if (!scheduleData) {
     return (
-        <div className="flex flex-col items-center justify-center min-h-screen text-center p-4">
-            <Card className="w-full max-w-2xl">
+        <div className="flex flex-col items-center justify-center min-h-screen text-center p-4 bg-transparent">
+            <Card className="w-full max-w-2xl bg-card/50 backdrop-blur-sm">
                 <CardHeader>
                     <CardTitle>No Schedule Found</CardTitle>
                     <CardDescription>It seems there was an issue generating your schedule.</CardDescription>
@@ -98,12 +98,12 @@ export function ScheduleDisplay() {
 
   return (
     <>
-      <div className="flex flex-col items-center justify-center min-h-screen p-4 md:p-8">
+      <div className="flex flex-col items-center justify-center min-h-screen p-4 md:p-8 bg-transparent">
         <Link href={backLink} className="absolute top-8 left-8 flex items-center gap-2 text-primary">
             <ArrowLeft className="h-4 w-4" />
             <span>Back</span>
         </Link>
-        <Card className="w-full max-w-4xl shadow-lg">
+        <Card className="w-full max-w-4xl shadow-lg bg-card/50 backdrop-blur-sm">
           <CardHeader>
             <CardTitle className="text-3xl font-headline text-center">Your Personalized Schedule</CardTitle>
             <CardDescription className="text-center">
@@ -111,7 +111,7 @@ export function ScheduleDisplay() {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="prose dark:prose-invert max-w-none bg-muted/50 p-6 rounded-lg whitespace-pre-wrap font-mono text-sm">
+            <div className="prose dark:prose-invert max-w-none bg-muted/30 p-6 rounded-lg whitespace-pre-wrap font-mono text-sm">
               {scheduleData.schedule}
             </div>
           </CardContent>
@@ -133,7 +133,7 @@ export function ScheduleDisplay() {
       </div>
 
       <AlertDialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-        <AlertDialogContent>
+        <AlertDialogContent className="bg-card/50 backdrop-blur-lg">
           <AlertDialogHeader>
             <AlertDialogTitle>Optimization Suggestions</AlertDialogTitle>
             <AlertDialogDescription>

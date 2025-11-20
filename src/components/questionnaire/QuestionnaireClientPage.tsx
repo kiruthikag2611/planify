@@ -92,7 +92,7 @@ export function QuestionnaireClientPage({
   }
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center p-4 animate-fade-in relative">
+    <div className="flex min-h-screen flex-col items-center justify-center p-4 animate-fade-in relative bg-transparent">
         <Button
             variant="ghost"
             size="icon"
@@ -102,7 +102,7 @@ export function QuestionnaireClientPage({
         >
             <ArrowLeft className="h-5 w-5" />
         </Button>
-      <Card className="w-full max-w-xl shadow-2xl">
+      <Card className="w-full max-w-xl shadow-2xl bg-card/50 backdrop-blur-sm">
         <CardHeader>
           <Progress value={progress} className="w-full mb-4" />
           <CardTitle className="text-center text-2xl font-headline">
