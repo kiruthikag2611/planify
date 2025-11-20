@@ -21,7 +21,7 @@ export default function Home() {
   if (status === 'loading' || status === 'authenticated') {
     return (
       <main className="flex min-h-screen flex-col items-center justify-center p-8 bg-transparent">
-        <PlanifyLogo className="h-24 w-24 text-primary animate-pulse" />
+        <PlanifyLogo className="h-32 w-auto text-primary animate-pulse" />
       </main>
     );
   }
@@ -30,10 +30,7 @@ export default function Home() {
     <main className="flex flex-col items-center justify-center min-h-screen p-4 sm:p-8 overflow-hidden bg-transparent">
         <div className="relative z-10 flex flex-col items-center text-center max-w-4xl w-full p-6 rounded-xl">
             <div className="animate-fade-in flex flex-col items-center gap-6" style={{ animationDelay: '0.2s', animationDuration: '0.8s' }}>
-                <PlanifyLogo className="w-40 h-40" />
-                <p className="mt-2 text-lg md:text-xl text-foreground/80 max-w-2xl mx-auto">
-                    Smarter Schedule, Smoother Days.
-                </p>
+                <PlanifyLogo className="w-96 h-auto" />
             </div>
 
             <div className="mt-12 animate-fade-in" style={{ animationDelay: '0.4s', animationDuration: '0.8s' }}>
