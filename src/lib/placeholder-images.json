@@ -25,10 +25,10 @@
       "imageHint": "university library"
     },
     {
-      "id": "cozy-study-illustration",
-      "description": "A seamless, full-app background illustration with a warm, cozy, aesthetic study theme. Shows an open book with soft pages, a warm coffee cup with steam, and minimal desk elements such as a pen, sticky notes, and subtle leaves or paper textures around the edges. The style is a clean, flat-illustration with warm beige, cream, and light brown tones, creating a calm academic mood for students.",
-      "imageUrl": "https://images.unsplash.com/photo-1512820790803-83ca734da794?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNDE5ODJ8MHwxfHNlYXJjaHwxfHxzdHVkeV9hZXN0aGV0aWN8ZW58MHx8fHwxNjYwODEyMjEwfDE&ixlib=rb-1.2.1&q=80&w=1080",
-      "imageHint": "study aesthetic"
+      "id": "cozy-desk-glow",
+      "description": "A desktop background with an aesthetic cozy study theme, featuring an open book under warm ambient light with a glowing spot above it for a logo. A steaming coffee cup sits on the right, with soft shadows and gentle sparkles rising from the book. The scene uses warm beige, cream, and wooden tones, creating a minimal and calming effect with clean space in the center.",
+      "imageUrl": "https://images.unsplash.com/photo-1541963463532-d68292c34b19?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxvcGVuJTIwYm9vayUyMGdsYXNzJTIwb2YlMjB3YXRlcnxlbnwwfHx8fDE3MjE4MzUwMjF8MA&ixlib=rb-4.0.3&q=80&w=1920",
+      "imageHint": "open book water"
     },
     {
       "id": "blurred-desk-background",
