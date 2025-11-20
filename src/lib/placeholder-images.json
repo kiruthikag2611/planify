@@ -7,6 +7,12 @@
       "imageHint": "dark academia"
     },
     {
+      "id": "planify-logo",
+      "description": "The official Planify logo with an open book, brain icon, pencil, and graduation cap.",
+      "imageUrl": "https://storage.googleapis.com/aai-web-samples/planify-logo.png",
+      "imageHint": "app logo"
+    },
+    {
       "id": "minimalist-desk",
       "description": "A clean, top-down view of a minimalist wooden desk with a laptop, a notebook, and a small plant.",
       "imageUrl": "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxtaW5pbWFsaXN0JTIwZGVza3xlbnwwfHx8fDE3MjE4MzQ5MDR8MA&ixlib=rb-4.0.3&q=80&w=1920",
