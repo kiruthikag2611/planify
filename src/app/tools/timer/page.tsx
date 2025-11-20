@@ -2,10 +2,11 @@
 
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "@/components/ui/card";
-import { Play, Pause, RotateCw, Volume2, VolumeX } from "lucide-react";
+import { Play, Pause, RotateCw, Volume2, VolumeX, ArrowLeft } from "lucide-react";
 import { useState, useEffect, useMemo } from "react";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Progress } from "@/components/ui/progress";
+import Link from "next/link";
 
 const presets = {
   pomodoro: { time: 25 * 60, label: "Pomodoro (25/5)" },
@@ -60,7 +61,14 @@ export default function FocusTimerPage() {
   const progressPercentage = (1 - (timer / totalTime)) * 100;
 
   return (
-    <div className="flex-1 space-y-4 p-4 md:p-8 pt-6 flex flex-col items-center justify-center">
+    <div className="flex-1 space-y-4 p-4 md:p-8 pt-6 flex flex-col items-center">
+        <div className="w-full max-w-md relative mb-4">
+            <Button variant="ghost" size="icon" className="absolute top-0 left-0" asChild>
+                <Link href="/tools">
+                    <ArrowLeft className="h-5 w-5" />
+                </Link>
+            </Button>
+        </div>
       <Card className="w-full max-w-md shadow-xl">
         <CardHeader>
           <CardTitle className="text-center text-2xl">Focus Timer</CardTitle>

@@ -2,12 +2,20 @@
 
 import { Card, CardHeader, CardTitle, CardContent, CardDescription } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { UploadCloud, DownloadCloud, Scan, FileJson } from "lucide-react"
+import { UploadCloud, DownloadCloud, Scan, FileJson, ArrowLeft } from "lucide-react"
+import Link from "next/link"
 
 export default function DataPage() {
     return (
         <div className="flex-1 space-y-6 p-4 md:p-8 pt-6">
-            <h2 className="text-3xl font-bold tracking-tight">Data Import / Export</h2>
+            <div className="flex items-center gap-4">
+                <Button variant="ghost" size="icon" asChild>
+                    <Link href="/tools">
+                        <ArrowLeft className="h-5 w-5" />
+                    </Link>
+                </Button>
+                <h2 className="text-3xl font-bold tracking-tight">Data Import / Export</h2>
+            </div>
 
             <div className="grid md:grid-cols-2 gap-8">
                 <Card>
