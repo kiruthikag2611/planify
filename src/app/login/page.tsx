@@ -4,18 +4,37 @@ import { useRouter } from 'next/navigation';
 import { useUser } from '@/firebase/auth/use-user';
 import { Button } from '@/components/ui/button';
 import { PlanifyLogo } from '@/components/logo';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { Github } from 'lucide-react';
+import { getAuth, signInWithPopup, GoogleAuthProvider, GithubAuthProvider } from 'firebase/auth';
 
 export default function LoginPage() {
   const router = useRouter();
   const { user, status } = useUser();
+  const [loadingProvider, setLoadingProvider] = useState<string | null>(null);
 
   useEffect(() => {
     if (status === 'authenticated') {
       router.replace('/dashboard');
     }
   }, [status, router]);
+
+  const handleSignIn = async (providerName: 'google' | 'github') => {
+    const auth = getAuth();
+    const provider = providerName === 'google' 
+      ? new GoogleAuthProvider() 
+      : new GithubAuthProvider();
+    
+    setLoadingProvider(providerName);
+    try {
+      await signInWithPopup(auth, provider);
+      // onAuthStateChanged in useUser will handle the redirect
+    } catch (error) {
+      console.error(`Error signing in with ${providerName}:`, error);
+      setLoadingProvider(null);
+    }
+  };
 
   if (status === 'loading' || status === 'authenticated') {
     return (
@@ -38,9 +57,25 @@ export default function LoginPage() {
           </p>
         </div>
         <div className="w-full space-y-4 mt-4">
-          <Button className="w-full" size="lg" asChild>
-            <Link href="/category">START</Link>
+           <Button 
+            className="w-full" 
+            size="lg" 
+            onClick={() => handleSignIn('google')}
+            disabled={!!loadingProvider}
+          >
+            {loadingProvider === 'google' ? 'Signing in...' : 'Sign in with Google'}
           </Button>
+          <Button 
+            className="w-full" 
+            size="lg" 
+            variant="secondary"
+            onClick={() => handleSignIn('github')}
+            disabled={!!loadingProvider}
+          >
+             <Github className="mr-2 h-5 w-5" />
+            {loadingProvider === 'github' ? 'Signing in...' : 'Sign in with GitHub'}
+          </Button>
+          <p className="text-xs text-muted-foreground">Or <Link href="/category" className="underline">continue as guest</Link></p>
         </div>
       </div>
     </div>
