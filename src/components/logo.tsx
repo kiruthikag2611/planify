@@ -10,68 +10,58 @@ export function PlanifyLogo({ className }: { className?: string }) {
       aria-label="Planify Logo"
     >
       <defs>
-        <radialGradient id="lightbulb-glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(68 45) rotate(90) scale(20)">
-          <stop stopColor="white" />
+        <linearGradient id="pencil-grad" x1="45" y1="50" x2="110" y2="80">
+          <stop stopColor="#FFD700" />
+          <stop offset="1" stopColor="#FFA500" />
+        </linearGradient>
+        <linearGradient id="bot-body-grad" x1="68" y1="55" x2="68" y2="85" gradientUnits="userSpaceOnUse">
+          <stop stopColor="#00BFFF" />
+          <stop offset="1" stopColor="#1E90FF" />
+        </linearGradient>
+        <radialGradient id="bulb-glow" cx="0" cy="0" r="1" gradientTransform="translate(68 45) rotate(90) scale(22)">
+          <stop stopColor="white" stopOpacity="1" />
+          <stop offset="0.7" stopColor="#FBBF24" stopOpacity="0.8" />
           <stop offset="1" stopColor="#FBBF24" stopOpacity="0" />
         </radialGradient>
-        <linearGradient id="pencil-body-grad" x1="120" y1="65" x2="40" y2="65" gradientUnits="userSpaceOnUse">
-          <stop stopColor="#FACC15" />
-          <stop offset="1" stopColor="#F59E0B" />
-        </linearGradient>
-        <linearGradient id="rocket-flame-grad" x1="140" y1="65" x2="170" y2="65" gradientUnits="userSpaceOnUse">
-          <stop stopColor="#F97316" />
-          <stop offset="1" stopColor="#EF4444" />
-        </linearGradient>
-        <linearGradient id="robot-body-grad" x1="68" y1="55" x2="68" y2="85" gradientUnits="userSpaceOnUse">
-          <stop stopColor="#22D3EE" />
-          <stop offset="1" stopColor="#0EA5E9" />
-        </linearGradient>
-        <filter id="soft-glow" x="-50%" y="-50%" width="200%" height="200%">
-            <feGaussianBlur stdDeviation="3" result="coloredBlur" />
-            <feMerge>
-                <feMergeNode in="coloredBlur" />
-                <feMergeNode in="SourceGraphic" />
-            </feMerge>
+        <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur stdDeviation="3.5" result="coloredBlur"/>
+          <feMerge>
+            <feMergeNode in="coloredBlur"/>
+            <feMergeNode in="SourceGraphic"/>
+          </feMerge>
         </filter>
       </defs>
 
-      <g transform="translate(10, 0)">
-        {/* Pencil Rocket */}
-        <g transform="translate(0 10)">
-          <path d="M135 65 L120 70 L120 60 L135 65Z" fill="#4B5563"/>
-          <path d="M40 60 L120 60 L120 70 L40 70 C 34.4772 70 30 65.5228 30 60 L30 60 L40 60Z" fill="url(#pencil-body-grad)"/>
-          <path d="M30 60 C30 54.4772 34.4772 50 40 50 L120 50 L120 60 L30 60Z" fill="#FBBE24"/>
-          <path d="M40 50 L20 65 L40 80 L40 50Z" fill="#F7D49B" />
-          <path d="M20 65 L25 65 L40 55 L40 75 L25 65Z" fill="#E4B87E" />
-          <path d="M135 65 L150 50 L145 65 L150 80 L135 65Z" fill="url(#rocket-flame-grad)" filter="url(#soft-glow)" />
-          <path d="M145 65 L165 58 L160 65 L165 72 L145 65Z" fill="#FBBF24" filter="url(#soft-glow)"/>
+      <g transform="translate(15, -10)">
+        
+        <path d="M40 50 L120 80 L40 110 L40 50 Z" fill="#2C3E50" opacity="0.1" transform="translate(5, 5)"/>
+        
+        <g>
+          <path d="M40 50 L120 80 L40 110 L40 50 Z" fill="url(#pencil-grad)"/>
+          <path d="M40 50 L20 65 L40 80 Z" fill="#E6C478" />
+          <path d="M20 65 L28 65 L40 55 L40 75 Z" fill="#C4A660" />
+          <path d="M120 80 L140 70 L135 80 L140 90 Z" fill="#FF4500" filter="url(#glow)"/>
+          <path d="M135 80 L150 75 L145 80 L150 85 Z" fill="#FFD700" filter="url(#glow)"/>
         </g>
         
-        {/* Bolt the Brainy Bot */}
-        <g transform="translate(0, -15)">
-            {/* Body */}
-            <rect x="53" y="60" width="30" height="25" rx="8" fill="url(#robot-body-grad)" />
-            <rect x="58" y="58" width="20" height="15" rx="4" fill="#FFFFFF" fillOpacity="0.5"/>
-            
-            {/* Head */}
-            <g>
-              <path d="M60 55 C60 50, 76 50, 76 55 L71 60 L65 60 L60 55Z" fill="#94A3B8"/>
-              <circle cx="68" cy="45" r="15" fill="#FBBF24"/>
-              <circle cx="68" cy="45" r="18" fill="url(#lightbulb-glow)" opacity="0.7"/>
-              <path d="M62 38 Q 68 35, 74 38" stroke="white" strokeWidth="2.5" fill="none" strokeLinecap="round" />
-            </g>
+        <g transform="translate(10, 0)">
+          <rect x="53" y="60" width="30" height="25" rx="8" fill="url(#bot-body-grad)"/>
+          <rect x="58" y="58" width="20" height="15" rx="4" fill="#FFFFFF" fillOpacity="0.3"/>
+          <path d="M60 55 C60 50, 76 50, 76 55 L71 60 L65 60 L60 55Z" fill="#708090"/>
+          
+          <circle cx="68" cy="45" r="15" fill="#FBBF24"/>
+          <circle cx="68" cy="45" r="20" fill="url(#bulb-glow)" />
+          <path d="M63 38 Q 68 35, 73 38" stroke="white" strokeWidth="2" fill="none" strokeLinecap="round" />
 
-            {/* Eyes */}
-            <circle cx="62" cy="72" r="3" fill="white" />
-            <circle cx="74" cy="72" r="3" fill="white" />
-            <circle cx="63" cy="73" r="1.5" fill="black" />
-            <circle cx="75" cy="73" r="1.5" fill="black" />
-
-            {/* Smile */}
-            <path d="M65 79 Q 68 83, 71 79" stroke="#0284C7" strokeWidth="2" fill="none" strokeLinecap="round" />
+          <circle cx="62" cy="72" r="3" fill="white" />
+          <circle cx="74" cy="72" r="3" fill="white" />
+          <circle cx="63" cy="73" r="1.5" fill="black" />
+          <circle cx="75" cy="73" r="1.5" fill="black" />
+          
+          <path d="M65 80 Q 68 84, 71 80" stroke="#005EB8" strokeWidth="1.5" fill="none" strokeLinecap="round" />
         </g>
       </g>
-
+      
       <text
         x="285"
         y="75"
