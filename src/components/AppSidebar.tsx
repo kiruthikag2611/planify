@@ -15,7 +15,6 @@ import {
   LogOut,
   FileInput
 } from "lucide-react"
-import Image from "next/image"
 
 import {
   SidebarHeader,
@@ -31,6 +30,7 @@ import {
 } from "@/components/ui/sidebar"
 import { Button } from "@/components/ui/button"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "./ui/collapsible"
+import { PlanifyLogo } from "./logo"
 
 export function AppSidebar() {
   const pathname = usePathname()
@@ -59,7 +59,7 @@ export function AppSidebar() {
     <>
       <SidebarHeader>
         <div className="flex items-center gap-2">
-          <Image src="/logo.png" alt="Planify Logo" width={24} height={24} className="h-6 w-6" />
+          <PlanifyLogo className="h-8 w-auto" />
           <span className="text-lg font-semibold">Planify</span>
         </div>
       </SidebarHeader>
