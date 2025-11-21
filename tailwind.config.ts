@@ -108,7 +108,7 @@ export default {
         'accordion-up': 'accordion-up 0.2s ease-out',
         'fade-in': 'fade-in 0.6s ease-out forwards',
         'gradient-pan': 'gradient-pan 15s ease infinite',
-        'breathing': 'breathing 12s ease-in-out infinite',
+        'breathing': 'breathing 20s ease-in-out infinite',
       },
       backgroundSize: {
         '200%': '200% 200%',
