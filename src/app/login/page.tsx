@@ -1,17 +1,24 @@
 
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/firebase/provider';
-import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+import { GoogleAuthProvider, signInWithPopup, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 import { useUser } from '@/firebase/auth/use-user';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import * as z from 'zod';
 
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useToast } from '@/hooks/use-toast';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import Image from 'next/image';
+import { Loader2 } from 'lucide-react';
 
 const GoogleIcon = () => (
     <svg className="h-5 w-5 mr-2" viewBox="0 0 24 24">
@@ -34,14 +41,29 @@ const GoogleIcon = () => (
     </svg>
 );
 
+const formSchema = z.object({
+  email: z.string().email({ message: 'Please enter a valid email address.' }),
+  password: z.string().min(6, { message: 'Password must be at least 6 characters long.' }),
+});
+
+type FormValues = z.infer<typeof formSchema>;
 
 export default function LoginPage() {
     const auth = useAuth();
     const router = useRouter();
     const { toast } = useToast();
     const { user, status } = useUser();
+    const [isLoading, setIsLoading] = useState(false);
     
     const backgroundImage = PlaceHolderImages.find(p => p.id === 'login-background');
+
+    const form = useForm<FormValues>({
+        resolver: zodResolver(formSchema),
+        defaultValues: {
+            email: '',
+            password: '',
+        },
+    });
 
     useEffect(() => {
         if (status === 'authenticated') {
@@ -49,16 +71,37 @@ export default function LoginPage() {
         }
     }, [status, router]);
 
+    const handleEmailSubmit = async (data: FormValues, action: 'signIn' | 'signUp') => {
+        if (!auth) return;
+        setIsLoading(true);
+        try {
+            if (action === 'signIn') {
+                await signInWithEmailAndPassword(auth, data.email, data.password);
+                toast({ title: 'Login Successful', description: 'Welcome back!' });
+            } else {
+                await createUserWithEmailAndPassword(auth, data.email, data.password);
+                toast({ title: 'Account Created', description: 'Welcome to Planify!' });
+            }
+            router.push('/category');
+        } catch (error: any) {
+            console.error('Email/Password Error:', error);
+            toast({
+                variant: 'destructive',
+                title: action === 'signIn' ? 'Login Failed' : 'Sign Up Failed',
+                description: error.message || 'An unexpected error occurred. Please try again.',
+            });
+        } finally {
+            setIsLoading(false);
+        }
+    };
 
     const handleGoogleSignIn = async () => {
         if (!auth) return;
+        setIsLoading(true);
         const provider = new GoogleAuthProvider();
         try {
             await signInWithPopup(auth, provider);
-            toast({
-                title: 'Login Successful',
-                description: 'Welcome back!',
-            });
+            toast({ title: 'Login Successful', description: 'Welcome back!' });
             router.push('/category');
         } catch (error) {
             console.error('Google Sign-In Error:', error);
@@ -67,6 +110,8 @@ export default function LoginPage() {
                 title: 'Login Failed',
                 description: 'Could not sign in with Google. Please try again.',
             });
+        } finally {
+            setIsLoading(false);
         }
     };
 
@@ -89,15 +134,53 @@ export default function LoginPage() {
                     data-ai-hint={backgroundImage.imageHint}
                 />
             )}
-            <div className="absolute inset-0 bg-black/40"></div>
+            <div className="absolute inset-0 bg-black/50"></div>
             <div className="relative flex min-h-screen items-center justify-center p-4">
-                <Card className="w-full max-w-sm animate-fade-in shadow-2xl border-white/20 bg-black/30 text-white">
+                <Card className="w-full max-w-sm animate-fade-in shadow-2xl border-white/20 bg-black/40 text-white backdrop-blur-sm">
                     <CardHeader className="text-center">
-                        <CardTitle className="text-2xl">Welcome Back!</CardTitle>
-                        <CardDescription className="text-white/80">Sign in to continue to Planify.</CardDescription>
+                        <CardTitle className="text-2xl">Welcome!</CardTitle>
+                        <CardDescription className="text-white/80">Sign in or create an account to continue.</CardDescription>
                     </CardHeader>
                     <CardContent>
-                        <Button onClick={handleGoogleSignIn} className="w-full bg-white text-black hover:bg-gray-200">
+                        <Tabs defaultValue="signin" className="w-full">
+                            <TabsList className="grid w-full grid-cols-2 bg-white/10 text-white/70">
+                                <TabsTrigger value="signin">Sign In</TabsTrigger>
+                                <TabsTrigger value="signup">Sign Up</TabsTrigger>
+                            </TabsList>
+                            <Form {...form}>
+                                <TabsContent value="signin">
+                                    <form onSubmit={form.handleSubmit(data => handleEmailSubmit(data, 'signIn'))} className="space-y-4 mt-4">
+                                        <EmailPasswordFields />
+                                        <Button type="submit" className="w-full" disabled={isLoading}>
+                                            {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                                            Sign In
+                                        </Button>
+                                    </form>
+                                </TabsContent>
+                                <TabsContent value="signup">
+                                     <form onSubmit={form.handleSubmit(data => handleEmailSubmit(data, 'signUp'))} className="space-y-4 mt-4">
+                                        <EmailPasswordFields />
+                                        <Button type="submit" className="w-full" disabled={isLoading}>
+                                           {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                                            Sign Up
+                                        </Button>
+                                    </form>
+                                </TabsContent>
+                            </Form>
+                        </Tabs>
+
+                        <div className="relative my-6">
+                            <div className="absolute inset-0 flex items-center">
+                                <span className="w-full border-t border-white/30" />
+                            </div>
+                            <div className="relative flex justify-center text-xs uppercase">
+                                <span className="bg-black/40 px-2 text-white/80">
+                                    Or continue with
+                                </span>
+                            </div>
+                        </div>
+
+                        <Button onClick={handleGoogleSignIn} className="w-full bg-white text-black hover:bg-gray-200" disabled={isLoading}>
                            <GoogleIcon />
                             Sign in with Google
                         </Button>
@@ -107,3 +190,37 @@ export default function LoginPage() {
         </div>
     );
 }
+
+const EmailPasswordFields = () => {
+    const { control } = useFormContext();
+    return (
+        <>
+            <FormField
+                control={control}
+                name="email"
+                render={({ field }) => (
+                    <FormItem>
+                        <FormLabel className="text-white/80">Email</FormLabel>
+                        <FormControl>
+                            <Input type="email" placeholder="you@example.com" {...field} className="bg-white/10 border-white/20 text-white placeholder:text-white/50 focus:ring-white" />
+                        </FormControl>
+                        <FormMessage />
+                    </FormItem>
+                )}
+            />
+            <FormField
+                control={control}
+                name="password"
+                render={({ field }) => (
+                    <FormItem>
+                        <FormLabel className="text-white/80">Password</FormLabel>
+                        <FormControl>
+                            <Input type="password" placeholder="••••••••" {...field} className="bg-white/10 border-white/20 text-white placeholder:text-white/50 focus:ring-white"/>
+                        </FormControl>
+                        <FormMessage />
+                    </FormItem>
+                )}
+            />
+        </>
+    );
+};
