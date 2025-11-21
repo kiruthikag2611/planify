@@ -1,4 +1,3 @@
-
 'use client';
 
 import Link from 'next/link';
@@ -7,11 +6,14 @@ import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import { useUser } from '@/firebase/auth/use-user';
 import { Toaster } from '@/components/ui/toaster';
-import { AnimatedBackground } from '@/components/AnimatedBackground';
+import Image from 'next/image';
+import { PlaceHolderImages } from '@/lib/placeholder-images';
 
 export default function Home() {
   const { status } = useUser();
   const router = useRouter();
+
+  const backgroundImage = PlaceHolderImages.find(p => p.id === 'cozy-study-ambience');
 
   useEffect(() => {
     if (status === 'authenticated') {
@@ -29,7 +31,16 @@ export default function Home() {
 
   return (
     <div className="relative min-h-screen w-full overflow-hidden flex flex-col items-center justify-center">
-      <AnimatedBackground />
+      {backgroundImage && (
+         <Image
+            src={backgroundImage.imageUrl}
+            alt={backgroundImage.description}
+            fill
+            className="object-cover -z-20"
+            data-ai-hint={backgroundImage.imageHint}
+        />
+      )}
+      <div className="absolute inset-0 bg-background/70 -z-10 backdrop-blur-sm"></div>
       <main className="z-10 flex flex-col items-center justify-center text-center p-4 sm:p-8 animate-fade-in">
         <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-foreground">Planify</h1>
         <p className="text-lg md:text-xl text-muted-foreground mt-4 max-w-md">
