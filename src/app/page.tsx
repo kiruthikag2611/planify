@@ -5,7 +5,6 @@ import { Button } from '@/components/ui/button';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import { useUser } from '@/firebase/auth/use-user';
-import Image from 'next/image';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 
 export default function Home() {
@@ -29,16 +28,10 @@ export default function Home() {
   }
 
   return (
-    <div className="flex flex-col min-h-screen">
-      {backgroundImage && (
-         <Image
-          src={backgroundImage.imageUrl}
-          alt={backgroundImage.description}
-          fill
-          className="object-cover"
-          data-ai-hint={backgroundImage.imageHint}
-        />
-      )}
+    <div 
+      className="flex flex-col min-h-screen bg-cover bg-center"
+      style={{ backgroundImage: backgroundImage ? `url(${backgroundImage.imageUrl})` : 'none' }}
+    >
       <main className="z-10 flex-1 flex flex-col items-center justify-center text-center p-4 sm:p-8 animate-fade-in">
         <div className="bg-white/70 backdrop-blur-sm p-8 rounded-2xl shadow-lg">
             <h1 className="text-4xl font-bold tracking-tight text-gray-800">Planify</h1>
