@@ -27,14 +27,12 @@ export default function Home() {
   return (
     <div className="flex flex-col min-h-screen bg-white">
       <main className="z-10 flex-1 flex flex-col items-center justify-center text-center p-4 sm:p-8 animate-fade-in">
-        <div className="flex flex-col items-center justify-center gap-4">
-          <h1 className="text-4xl font-bold tracking-tight mt-4 drop-shadow-md">Planify</h1>
-          <p className="text-lg text-foreground/80 drop-shadow-md">Smarter Schedule, Smoother Days.</p>
-          <div className="mt-8">
-            <Button asChild size="lg" className="shadow-lg shadow-black/20 hover:shadow-black/30 transition-shadow">
+        <h1 className="text-4xl font-bold tracking-tight mt-4 drop-shadow-md text-gray-700">Planify</h1>
+        <p className="text-lg text-gray-500 drop-shadow-md">Smarter Schedule, Smoother Days.</p>
+        <div className="mt-8">
+            <Button asChild size="lg" className="shadow-lg bg-gray-600 hover:bg-gray-700 text-white shadow-black/20 hover:shadow-black/30 transition-shadow">
               <Link href="/category">Start</Link>
             </Button>
-          </div>
         </div>
       </main>
     </div>
