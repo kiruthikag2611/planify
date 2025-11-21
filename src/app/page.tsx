@@ -1,3 +1,4 @@
+
 'use client';
 
 import Link from 'next/link';
@@ -6,7 +7,6 @@ import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import { useUser } from '@/firebase/auth/use-user';
 import { PlanifyLogo } from '@/components/logo';
-import { PlaceHolderImages } from '@/lib/placeholder-images';
 
 export default function Home() {
   const { status } = useUser();
@@ -18,7 +18,6 @@ export default function Home() {
     }
   }, [status, router]);
 
-  const backgroundImage = PlaceHolderImages.find(img => img.id === 'blurred-desk-background');
 
   if (status === 'loading' || status === 'authenticated') {
     return (
@@ -29,11 +28,7 @@ export default function Home() {
   }
 
   return (
-    <div className="flex flex-col min-h-screen" style={{
-      backgroundImage: `url(${backgroundImage?.imageUrl})`,
-      backgroundSize: 'cover',
-      backgroundPosition: 'center',
-    }}>
+    <div className="flex flex-col min-h-screen">
       <div className="absolute inset-0 bg-background/80 backdrop-blur-sm" />
       <main className="z-10 flex-1 flex flex-col items-center justify-center text-center p-4 sm:p-8 animate-fade-in">
         <div className="flex flex-col items-center justify-center gap-4">
