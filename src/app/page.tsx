@@ -21,7 +21,7 @@ export default function Home() {
   if (status === 'loading' || status === 'authenticated') {
     return (
       <main className="flex min-h-screen flex-col items-center justify-center p-8">
-        <PlanifyLogo className="h-32 w-auto text-primary animate-pulse" />
+        <PlanifyLogo className="h-32 w-auto animate-pulse" />
       </main>
     );
   }
@@ -31,11 +31,7 @@ export default function Home() {
       <main className="flex-1 flex flex-col items-center justify-center text-center p-4 sm:p-8 animate-fade-in">
         
         <div className="flex flex-col items-center justify-center gap-4">
-          <PlanifyLogo className="h-24 w-24 text-primary" />
-          <h1 className="text-5xl font-bold tracking-tight">Planify</h1>
-          <p className="text-lg text-muted-foreground">
-            Smarter Schedule, Smoother Days.
-          </p>
+          <PlanifyLogo className="h-48 w-auto" />
         </div>
 
         <div className="absolute bottom-16 z-10">
