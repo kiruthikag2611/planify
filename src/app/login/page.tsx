@@ -3,10 +3,7 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { useAuth } from '@/firebase/provider';
-import { GoogleAuthProvider, signInWithPopup, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
-import { useUser } from '@/firebase/auth/use-user';
-import { useForm, useFormContext } from 'react-hook-form';
+import { useForm, useFormContext, FormProvider } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 
@@ -43,16 +40,14 @@ const GoogleIcon = () => (
 
 const formSchema = z.object({
   email: z.string().email({ message: 'Please enter a valid email address.' }),
-  password: z.string().min(6, { message: 'Password must be at least 6 characters long.' }),
+  password: z.string().min(1, { message: 'Password is required.' }),
 });
 
 type FormValues = z.infer<typeof formSchema>;
 
 export default function LoginPage() {
-    const auth = useAuth();
     const router = useRouter();
     const { toast } = useToast();
-    const { user, status } = useUser();
     const [isLoading, setIsLoading] = useState(false);
     
     const backgroundImage = PlaceHolderImages.find(p => p.id === 'login-background');
@@ -65,63 +60,23 @@ export default function LoginPage() {
         },
     });
 
-    useEffect(() => {
-        if (status === 'authenticated') {
-            router.replace('/category');
-        }
-    }, [status, router]);
-
-    const handleEmailSubmit = async (data: FormValues, action: 'signIn' | 'signUp') => {
-        if (!auth) return;
+    const handleEmailSubmit = async (data: FormValues) => {
         setIsLoading(true);
-        try {
-            if (action === 'signIn') {
-                await signInWithEmailAndPassword(auth, data.email, data.password);
-                toast({ title: 'Login Successful', description: 'Welcome back!' });
-            } else {
-                await createUserWithEmailAndPassword(auth, data.email, data.password);
-                toast({ title: 'Account Created', description: 'Welcome to Planify!' });
-            }
-            router.push('/category');
-        } catch (error: any) {
-            console.error('Email/Password Error:', error);
-            toast({
-                variant: 'destructive',
-                title: action === 'signIn' ? 'Login Failed' : 'Sign Up Failed',
-                description: error.message || 'An unexpected error occurred. Please try again.',
-            });
-        } finally {
-            setIsLoading(false);
-        }
+        // Simulate a network request
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        toast({ title: 'Login Successful', description: 'Redirecting...' });
+        router.push('/dashboard');
+        setIsLoading(false);
     };
 
     const handleGoogleSignIn = async () => {
-        if (!auth) return;
         setIsLoading(true);
-        const provider = new GoogleAuthProvider();
-        try {
-            await signInWithPopup(auth, provider);
-            toast({ title: 'Login Successful', description: 'Welcome back!' });
-            router.push('/category');
-        } catch (error) {
-            console.error('Google Sign-In Error:', error);
-            toast({
-                variant: 'destructive',
-                title: 'Login Failed',
-                description: 'Could not sign in with Google. Please try again.',
-            });
-        } finally {
-            setIsLoading(false);
-        }
+        // Simulate a network request
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        toast({ title: 'Login Successful', description: 'Redirecting...' });
+        router.push('/dashboard');
+        setIsLoading(false);
     };
-
-    if (status === 'loading' || status === 'authenticated') {
-      return (
-        <div className="flex min-h-screen flex-col items-center justify-center p-8 bg-background">
-          <div className="h-16 w-16 border-4 border-dashed rounded-full animate-spin border-primary/20"></div>
-        </div>
-      );
-    }
 
     return (
         <div className="relative min-h-screen w-full">
@@ -147,9 +102,9 @@ export default function LoginPage() {
                                 <TabsTrigger value="signin">Sign In</TabsTrigger>
                                 <TabsTrigger value="signup">Sign Up</TabsTrigger>
                             </TabsList>
-                            <Form {...form}>
+                            <FormProvider {...form}>
                                 <TabsContent value="signin">
-                                    <form onSubmit={form.handleSubmit(data => handleEmailSubmit(data, 'signIn'))} className="space-y-4 mt-4">
+                                    <form onSubmit={form.handleSubmit(handleEmailSubmit)} className="space-y-4 mt-4">
                                         <EmailPasswordFields />
                                         <Button type="submit" className="w-full" disabled={isLoading}>
                                             {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
@@ -158,7 +113,7 @@ export default function LoginPage() {
                                     </form>
                                 </TabsContent>
                                 <TabsContent value="signup">
-                                     <form onSubmit={form.handleSubmit(data => handleEmailSubmit(data, 'signUp'))} className="space-y-4 mt-4">
+                                     <form onSubmit={form.handleSubmit(handleEmailSubmit)} className="space-y-4 mt-4">
                                         <EmailPasswordFields />
                                         <Button type="submit" className="w-full" disabled={isLoading}>
                                            {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
@@ -166,7 +121,7 @@ export default function LoginPage() {
                                         </Button>
                                     </form>
                                 </TabsContent>
-                            </Form>
+                            </FormProvider>
                         </Tabs>
 
                         <div className="relative my-6">

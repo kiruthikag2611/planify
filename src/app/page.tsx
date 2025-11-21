@@ -3,36 +3,13 @@
 
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
-import { useUser } from '@/firebase/auth/use-user';
 import { Toaster } from '@/components/ui/toaster';
 import Image from 'next/image';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 
 export default function Home() {
-  const { status } = useUser();
-  const router = useRouter();
 
   const backgroundImage = PlaceHolderImages.find(p => p.id === 'cozy-study-ambience');
-
-  useEffect(() => {
-    if (status === 'authenticated') {
-      router.replace('/category');
-    }
-  }, [status, router]);
-
-  if (status === 'loading') {
-    return (
-      <div className="flex min-h-screen flex-col items-center justify-center p-8 bg-background">
-        <div className="h-16 w-16 border-4 border-dashed rounded-full animate-spin border-primary/20"></div>
-      </div>
-    );
-  }
-  
-  if (status === 'authenticated') {
-    return null;
-  }
 
   return (
     <div className="relative min-h-screen w-full overflow-hidden flex flex-col items-center justify-center p-4">
