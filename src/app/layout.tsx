@@ -18,7 +18,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const backgroundImage = PlaceHolderImages.find(img => img.id === 'tech-background');
+  const backgroundImage = PlaceHolderImages.find(img => img.id === 'blurred-desk-background');
 
   return (
     <html lang="en" suppressHydrationWarning>
