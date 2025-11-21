@@ -51,7 +51,7 @@ export function WelcomeBackground() {
         ></div>
         <div className="relative z-10 w-full h-full flex items-center justify-center">
             {studyElements.map((item) => (
-            <div key={item.id} className={item.className} style={{ opacity: 0.5 }}>
+            <div key={item.id} className={item.className}>
                 <Image
                     src={item.src}
                     alt={item.alt}
