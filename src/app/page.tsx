@@ -36,14 +36,14 @@ export default function Home() {
             src={backgroundImage.imageUrl}
             alt={backgroundImage.description}
             fill
-            className="object-cover -z-20"
+            className="object-cover"
             data-ai-hint={backgroundImage.imageHint}
         />
       )}
-      <div className="absolute inset-0 bg-background/70 -z-10 backdrop-blur-sm"></div>
-      <main className="z-10 flex flex-col items-center justify-center text-center p-4 sm:p-8 animate-fade-in">
-        <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-foreground">Planify</h1>
-        <p className="text-lg md:text-xl text-muted-foreground mt-4 max-w-md">
+      <div className="absolute inset-0 bg-black/30"></div>
+      <main className="z-10 flex flex-col items-center justify-center text-center p-4 sm:p-8 animate-fade-in text-white">
+        <h1 className="text-5xl md:text-7xl font-bold tracking-tight">Planify</h1>
+        <p className="text-lg md:text-xl mt-4 max-w-md">
           Smarter Schedule, Smoother Days.
         </p>
         <div className="mt-8">
