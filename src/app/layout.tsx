@@ -6,6 +6,7 @@ import { Toaster } from '@/components/ui/toaster';
 import { SidebarProvider, Sidebar, SidebarInset } from '@/components/ui/sidebar';
 import { AppSidebar } from '@/components/AppSidebar';
 import { FirebaseErrorListener } from '@/components/FirebaseErrorListener';
+import { PlaceHolderImages } from '@/lib/placeholder-images';
 
 export const metadata: Metadata = {
   title: 'Planify',
@@ -18,6 +19,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
 
+  const backgroundImage = PlaceHolderImages.find(img => img.id === 'warm-study-desk');
+
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
@@ -27,7 +30,14 @@ export default function RootLayout({
       </head>
       <body 
         className="font-body antialiased"
+        style={{
+          backgroundImage: `url(${backgroundImage?.imageUrl})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundAttachment: 'fixed',
+        }}
       >
+        <div className="absolute inset-0 bg-background/80 backdrop-blur-sm" />
         <Providers>
           <FirebaseErrorListener />
           <SidebarProvider>
