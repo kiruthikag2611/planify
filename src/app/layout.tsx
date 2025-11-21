@@ -2,10 +2,8 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import { Providers } from './providers';
-import { Toaster } from '@/components/ui/toaster';
-import { SidebarProvider, Sidebar, SidebarInset } from '@/components/ui/sidebar';
-import { AppSidebar } from '@/components/AppSidebar';
-import { FirebaseErrorListener } from '@/components/FirebaseErrorListener';
+import { AppLayout } from '@/components/AppLayout';
+
 
 export const metadata: Metadata = {
   title: 'Planify',
@@ -28,17 +26,10 @@ export default function RootLayout({
         className="font-body antialiased"
       >
         <Providers>
-          <FirebaseErrorListener />
-          <SidebarProvider>
-            <Sidebar>
-              <AppSidebar />
-            </Sidebar>
-            <SidebarInset>
-              {children}
-            </SidebarInset>
-          </SidebarProvider>
+          <AppLayout>
+            {children}
+          </AppLayout>
         </Providers>
-        <Toaster />
       </body>
     </html>
   );
