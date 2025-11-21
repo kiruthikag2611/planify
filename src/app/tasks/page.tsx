@@ -143,13 +143,11 @@ function TaskCard({ task }: { task: any }) {
                 </div>
             </CardHeader>
             <CardContent className="space-y-3">
-                 <div className="flex items-center text-sm text-muted-foreground">
+                 <div className="flex items-center text-sm text-muted-foreground h-5">
                     <Clock className="mr-2 h-4 w-4" />
                     {isClient ? (
                         <span>Due {new Date(task.dueDate).toLocaleDateString()} &bull; {new Date(task.dueDate).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</span>
-                    ) : (
-                        <span>Loading...</span>
-                    )}
+                    ) : null }
                 </div>
                 {task.progress > 0 && <Progress value={task.progress} />}
                 <div className="flex items-center justify-end space-x-2 pt-2 border-t mt-2">
