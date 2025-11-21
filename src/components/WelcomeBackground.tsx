@@ -29,12 +29,12 @@ const studyElements = [
     height: 267,
   },
   {
-    id: 'spectacles',
-    src: 'https://images.unsplash.com/photo-1574281084276-8f395c1a8479?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=400',
-    alt: 'A pair of spectacles on a book',
+    id: 'books',
+    src: 'https://images.unsplash.com/photo-1550399105-c4db5fb85c18?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=400',
+    alt: 'A stack of vintage books',
     className: 'absolute bottom-[15%] right-[15%] w-40 h-auto rotate-12 animate-[pulse_12s_ease-in-out_infinite]',
     width: 400,
-    height: 267,
+    height: 286,
   },
 ];
 
