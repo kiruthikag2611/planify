@@ -93,9 +93,9 @@ export default {
           'to': { opacity: '1', transform: 'translateY(0)' },
         },
         'bg-pan': {
-          '0%': { transform: 'scale(1.05) translate(2%, 2%)' },
-          '50%': { transform: 'scale(1.05) translate(-2%, -2%)' },
-          '100%': { transform: 'scale(1.05) translate(2%, 2%)' },
+          '0%': { 'background-position': '0% 50%' },
+          '50%': { 'background-position': '100% 50%' },
+          '100%': { 'background-position': '0% 50%' },
         },
         'wobble': {
           '0%, 100%': { transform: 'rotate(0deg) scale(1)' },
@@ -108,7 +108,7 @@ export default {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
         'fade-in': 'fade-in 0.5s ease-out forwards',
-        'bg-pan': 'bg-pan 30s ease-in-out infinite',
+        'bg-pan': 'bg-pan 15s ease-in-out infinite',
         'wobble': 'wobble 0.5s ease-in-out',
       },
     },

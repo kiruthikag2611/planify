@@ -26,7 +26,6 @@
     --ring: 221 83% 53%;
     --radius: 0.5rem;
 
-    /* Sidebar specific colors */
     --sidebar-background: 220 10% 15% / 0.8;
     --sidebar-foreground: 220 20% 98%;
     --sidebar-primary: 221 83% 63%;
@@ -35,6 +34,11 @@
     --sidebar-accent-foreground: 220 20% 98%;
     --sidebar-border: 220 20% 98% / 0.1;
     --sidebar-ring: 221 83% 63%;
+
+    --pastel-mint: 158 65% 87%;
+    --baby-blue: 210 100% 91%;
+    --lavender: 255 100% 95%;
+    --soft-peach: 22 100% 90%;
   }
 
   .dark {
@@ -85,5 +89,16 @@
   }
   .prose {
     @apply text-foreground;
+  }
+  .animated-background {
+    background: linear-gradient(
+      -45deg,
+      hsl(var(--pastel-mint)),
+      hsl(var(--baby-blue)),
+      hsl(var(--lavender)),
+      hsl(var(--soft-peach))
+    );
+    background-size: 400% 400%;
+    animation: bg-pan 15s ease-in-out infinite;
   }
 }
