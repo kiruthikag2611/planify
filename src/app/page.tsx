@@ -22,7 +22,8 @@ export default function Home() {
   if (status === 'loading' || status === 'authenticated') {
     return (
       <main className="flex min-h-screen flex-col items-center justify-center p-8 bg-white">
-        <div className="h-32 w-auto animate-pulse" />
+        {/* Placeholder for loading state */}
+        <div className="h-16 w-16 border-4 border-dashed rounded-full animate-spin border-gray-300"></div>
       </main>
     );
   }
@@ -30,7 +31,7 @@ export default function Home() {
   return (
     <div 
       className="flex flex-col min-h-screen bg-cover bg-center"
-      style={{ backgroundImage: backgroundImage ? `url(${backgroundImage.imageUrl})` : 'none' }}
+      style={{ backgroundImage: `url(${backgroundImage?.imageUrl})` }}
     >
       <main className="z-10 flex-1 flex flex-col items-center justify-center text-center p-4 sm:p-8 animate-fade-in">
         <div className="bg-white/70 backdrop-blur-sm p-8 rounded-2xl shadow-lg">
