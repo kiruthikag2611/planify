@@ -100,7 +100,7 @@ export default {
         },
         'breathing': {
           '0%, 100%': { boxShadow: '0 0 20px 5px hsl(var(--primary)/0.2)' },
-          '50%': { boxShadow: '0 0 30px 8px hsl(var(--primary)/0.4)' },
+          '50%': { boxShadow: '0 0 30px 10px hsl(var(--primary)/0.4)' },
         },
       },
       animation: {
