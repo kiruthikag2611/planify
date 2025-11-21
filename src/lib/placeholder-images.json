@@ -3,8 +3,8 @@
     {
       "id": "welcome-background",
       "description": "A beautiful, warm illustration of a comfortable armchair next to a window, with a stack of books and a cup of coffee.",
-      "imageUrl": "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxkYXJrJTIwYWNhZGVtaWF8ZW58MHx8fHwxNzIxODMzODc4fDA&ixlib=rb-4.0.3&q=80&w=1920",
-      "imageHint": "dark academia"
+      "imageUrl": "https://images.unsplash.com/photo-1497633762265-9d179a990aaa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxzdHVkeSUyMGRlc2t8ZW58MHx8fHwxNzI1NDE5OTgzfDA&ixlib=rb-4.0.3&q=80&w=1920",
+      "imageHint": "study desk"
     },
     {
       "id": "minimalist-desk",
@@ -47,6 +47,12 @@
       "description": "A cozy desk setup with an open book, a cup of tea, and some plant decorations, creating a warm and inviting study atmosphere.",
       "imageUrl": "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzdHVkeVxlbnwwfHx8fDE3MjE4MzQ4MDN8MA&ixlib=rb-4.0.3&q=80&w=1920",
       "imageHint": "study ambient"
+    },
+    {
+      "id": "tech-background",
+      "description": "Abstract background with blue and purple gradients and geometric shapes.",
+      "imageUrl": "https://images.unsplash.com/photo-1554141528-5e81f4f34b2f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxhYnN0cmFjdCUyMHRlY2glMjBibHVlfGVufDB8fHx8MTcyNTQyMDAwMHww&ixlib=rb-4.0.3&q=80&w=1920",
+      "imageHint": "abstract tech blue"
     }
   ]
 }
