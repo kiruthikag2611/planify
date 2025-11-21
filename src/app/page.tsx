@@ -7,7 +7,6 @@ import { Button } from '@/components/ui/button';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import { useUser } from '@/firebase/auth/use-user';
-import { PlanifyLogo } from '@/components/logo';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 
 export default function Home() {
@@ -29,7 +28,7 @@ export default function Home() {
     );
   }
 
-  const backgroundImage = PlaceHolderImages.find(img => img.id === 'blurred-desk-background');
+  const backgroundImage = PlaceHolderImages.find(img => img.id === 'warm-study-desk');
 
   return (
     <div className="relative flex flex-col min-h-screen">
@@ -47,7 +46,6 @@ export default function Home() {
       <main className="z-10 flex-1 flex flex-col items-center justify-center text-center p-4 sm:p-8 animate-fade-in">
         <div className="bg-white/10 backdrop-blur-md rounded-2xl p-8 sm:p-12 shadow-2xl border border-white/20">
             <div className="flex flex-col items-center justify-center gap-4 text-white">
-            <PlanifyLogo className="h-24 w-24 text-white drop-shadow-lg" />
             <h1 className="text-4xl font-bold tracking-tight mt-4 drop-shadow-md">Planify</h1>
             <p className="text-lg text-white/80 drop-shadow-md">Smarter Schedule, Smoother Days.</p>
             <div className="mt-8">
