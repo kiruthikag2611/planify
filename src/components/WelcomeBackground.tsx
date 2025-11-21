@@ -32,7 +32,7 @@ const studyElements = [
     id: 'pencil-cup',
     src: 'https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=400',
     alt: 'A cup holding pens and pencils',
-    className: 'absolute bottom-[15%] left-[20%] w-36 h-auto -rotate-6 animate-[pulse_11s_ease-in-out_infinite]',
+    className: 'absolute bottom-[20%] left-[15%] w-36 h-auto -rotate-6 animate-[pulse_11s_ease-in-out_infinite]',
     width: 400,
     height: 267,
   },
