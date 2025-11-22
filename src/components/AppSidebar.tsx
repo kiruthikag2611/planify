@@ -48,7 +48,7 @@ export function AppSidebar() {
     { href: '/calendar', label: 'Calendar', icon: Calendar },
     { href: '/schedule', label: 'Timetable', icon: Book },
     { href: '/tasks', label: 'Tasks & Activities', icon: ClipboardList },
-    { href: '/tasks/exams', label: 'Exams', icon: Brain },
+    { href: '/tasks/exams', label: 'Thinkathon', icon: Brain },
     {
       id: 'tools',
       label: 'Tools',
