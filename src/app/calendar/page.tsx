@@ -1,3 +1,4 @@
+
 'use client';
 
 import * as React from 'react';
@@ -44,10 +45,16 @@ import { Skeleton } from '@/components/ui/skeleton';
 export default function CalendarPage() {
   const [currentMonth, setCurrentMonth] = React.useState(new Date());
   const [isSheetOpen, setIsSheetOpen] = React.useState(false);
+  const [today, setToday] = React.useState<Date | null>(null);
 
   const { user } = useUser();
   const firestore = useFirestore();
   const router = useRouter();
+
+  React.useEffect(() => {
+    // Set today on the client-side to avoid hydration mismatch
+    setToday(new Date());
+  }, []);
 
   const eventsQuery = React.useMemo(() => {
     if (!user || !firestore) return null;
@@ -70,6 +77,10 @@ export default function CalendarPage() {
   const hasEvents = (day: Date) => {
     return events?.some((e) => isSameDay(new Date(e.date), day)) || false;
   };
+  
+  const isDayToday = (day: Date) => {
+    return today ? isSameDay(day, today) : false;
+  }
 
   const handleAddEvent = () => {
     setIsSheetOpen(true);
@@ -139,13 +150,13 @@ export default function CalendarPage() {
               className={cn(
                 'border-r border-b p-2 flex flex-col items-center cursor-pointer transition-colors hover:bg-accent',
                 !isSameMonth(day, currentMonth) && 'text-muted-foreground',
-                isToday(day) && 'bg-blue-500/10'
+                isDayToday(day) && 'bg-blue-500/10'
               )}
             >
               <span
                 className={cn(
                   'h-8 w-8 flex items-center justify-center rounded-full font-medium',
-                  isToday(day) && 'bg-primary text-primary-foreground'
+                  isDayToday(day) && 'bg-primary text-primary-foreground'
                 )}
               >
                 {format(day, 'd')}
