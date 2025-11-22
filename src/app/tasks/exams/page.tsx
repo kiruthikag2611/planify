@@ -1,8 +1,9 @@
+
 "use client"
 
 import { Card, CardHeader, CardTitle, CardContent, CardDescription, CardFooter } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { ArrowLeft, BookOpen, CalendarDays, CheckSquare, ChevronDown, Clock, Plus } from "lucide-react"
+import { ArrowLeft, BookOpen, CalendarDays, CheckSquare, ChevronDown, Clock, Plus, Brain } from "lucide-react"
 import Link from "next/link"
 import { Badge } from "@/components/ui/badge"
 import { Checkbox } from "@/components/ui/checkbox"
@@ -36,7 +37,7 @@ export default function ExamsPage() {
                         <ArrowLeft className="h-5 w-5" />
                     </Button>
                 </Link>
-                <h2 className="text-3xl font-bold tracking-tight">Exams</h2>
+                <h2 className="text-3xl font-bold tracking-tight flex items-center gap-2"><Brain className="h-8 w-8 text-primary"/>Thinkathon</h2>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
