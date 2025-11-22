@@ -7,7 +7,7 @@ import { AppLayout } from '@/components/AppLayout';
 
 export const metadata: Metadata = {
   title: 'Planify',
-  description: 'SMARTER SCHEDULES! SMOOTHER DAYS!',
+  description: 'Smarter Schedule, Smoother Days.',
 };
 
 export default function RootLayout({

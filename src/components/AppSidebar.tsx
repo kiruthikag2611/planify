@@ -1,3 +1,4 @@
+
 'use client';
 
 import Link from 'next/link';
@@ -42,7 +43,6 @@ export function AppSidebar() {
   const pathname = usePathname();
 
   const menuItems = [
-    { href: '/', label: 'Home', icon: Home },
     { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
     { href: '/calendar', label: 'Calendar', icon: Calendar },
     { href: '/tasks', label: 'Tasks & Activities', icon: ClipboardList },
@@ -74,6 +74,7 @@ export function AppSidebar() {
     <>
       <SidebarHeader>
         <div className="flex items-center gap-2">
+          <PlanifyLogo className="h-8" />
           <span className="text-lg font-semibold">Planify</span>
         </div>
       </SidebarHeader>

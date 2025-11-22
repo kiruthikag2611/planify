@@ -1,22 +1,20 @@
+
 "use client";
 
-import { useEffect } from "react";
 import Link from "next/link";
 import { useRouter, useParams } from "next/navigation";
-import { useQuestionnaire } from "@/context/QuestionnaireProvider";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { ArrowLeft } from "lucide-react";
 
 const subCategories = {
   academics: ["Student", "Professor", "Management"],
-  personal: ["Student"],
+  professional: ["Employee", "Freelancer"],
 };
 
 export default function SubCategoryPage() {
   const router = useRouter();
   const params = useParams();
-  const { setCategory, setSubCategory, reset } = useQuestionnaire();
   const category = Array.isArray(params.category) ? params.category[0] : params.category;
 
   const validCategories = Object.keys(subCategories);
@@ -26,17 +24,11 @@ export default function SubCategoryPage() {
     }
     return null;
   }
-  
-  useEffect(() => {
-    reset();
-    setCategory(category as "academics" | "personal");
-  }, [category, setCategory, reset]);
-
 
   const handleSelect = (sub: string) => {
-    const subCategoryLower = sub.toLowerCase();
-    setSubCategory(subCategoryLower as "student" | "professor" | "management");
-    router.push(`/q/${category}/${subCategoryLower}/0`);
+    // Here you could store the selection in context or state if needed
+    // For now, it just redirects to the login page.
+    router.push(`/login`);
   };
 
   const options = subCategories[category as keyof typeof subCategories];
@@ -53,7 +45,7 @@ export default function SubCategoryPage() {
           <h1 className="text-3xl font-bold font-headline">
             {categoryTitle}: Select Your Role
           </h1>
-          <p className="text-muted-foreground">This helps us tailor the questions for you.</p>
+          <p className="text-muted-foreground">This helps us tailor the experience for you.</p>
           <div className="flex flex-col gap-4 mt-8 w-full">
             {options.map((sub) => (
               <Button
