@@ -1,10 +1,17 @@
 import Link from "next/link";
 import { Card, CardHeader, CardTitle } from "@/components/ui/card";
-import { GraduationCap, User } from "lucide-react";
+import { GraduationCap, User, ArrowLeft } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 export default function CategoryPage() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-8">
+    <main className="flex min-h-screen flex-col items-center justify-center p-8 relative">
+       <Link href="/" className="absolute top-8 left-8">
+          <Button variant="ghost">
+            <ArrowLeft className="mr-2 h-4 w-4" />
+            Back to Home
+          </Button>
+        </Link>
       <div className="flex flex-col items-center gap-4 text-center w-full max-w-md">
         <h1 className="text-3xl font-bold font-headline">Choose a Category</h1>
         <p className="text-muted-foreground">Select one to get started.</p>
