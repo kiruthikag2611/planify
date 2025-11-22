@@ -8,11 +8,15 @@ import { Toaster } from './ui/toaster';
 
 export function AppLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  const isAuthPage = ['/', '/login'].includes(pathname);
+  // Pages that should not have the main app sidebar
+  const noSidebarPaths = ['/', '/login', '/schedule'];
+  
+  const isNoSidebarPage = noSidebarPaths.includes(pathname) || 
+                          pathname.startsWith('/category') || 
+                          pathname.startsWith('/q');
 
-  if (isAuthPage) {
-    // For auth pages, render children directly without the main app layout.
-    // Also include Toaster here for any auth-related toasts.
+  if (isNoSidebarPage) {
+    // For auth and onboarding pages, render children directly without the main app layout.
     return (
         <>
             {children}
