@@ -3,7 +3,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { useForm, FormProvider, useFormContext } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import * as React from 'react';
@@ -39,49 +39,21 @@ const GoogleIcon = () => (
     </svg>
 );
 
-const formSchema = z.object({
-  displayName: z.string().optional(),
+const signInSchema = z.object({
   email: z.string().email({ message: 'Please enter a valid email address.' }),
   password: z.string().min(1, { message: 'Password is required.' }),
 });
 
-const signUpSchema = formSchema.extend({
+const signUpSchema = signInSchema.extend({
     displayName: z.string().min(1, { message: 'Name is required.' }),
 });
-
-type FormValues = z.infer<typeof formSchema>;
 
 export default function LoginPage() {
     const router = useRouter();
     const { toast } = useToast();
     const [isLoading, setIsLoading] = useState(false);
-    const [activeTab, setActiveTab] = useState('signin');
     
     const backgroundImage = PlaceHolderImages.find(p => p.id === 'login-background');
-
-    const form = useForm<FormValues>({
-        resolver: zodResolver(activeTab === 'signup' ? signUpSchema : formSchema),
-        defaultValues: {
-            displayName: '',
-            email: '',
-            password: '',
-        },
-    });
-    
-    // Watch activeTab and update resolver
-    React.useEffect(() => {
-        form.reset(); // Reset form when tab changes
-    }, [activeTab, form]);
-
-
-    const handleEmailSubmit = async (data: FormValues) => {
-        setIsLoading(true);
-        // Simulate a network request
-        await new Promise(resolve => setTimeout(resolve, 1000));
-        toast({ title: 'Login Successful', description: 'Redirecting...' });
-        router.push('/dashboard');
-        setIsLoading(false);
-    };
 
     const handleGoogleSignIn = async () => {
         setIsLoading(true);
@@ -111,31 +83,17 @@ export default function LoginPage() {
                         <CardDescription className="text-white/80">Sign in or create an account to continue.</CardDescription>
                     </CardHeader>
                     <CardContent>
-                        <Tabs defaultValue="signin" className="w-full" onValueChange={setActiveTab}>
+                        <Tabs defaultValue="signin" className="w-full">
                             <TabsList className="grid w-full grid-cols-2 bg-white/10 text-white/70">
                                 <TabsTrigger value="signin">Sign In</TabsTrigger>
                                 <TabsTrigger value="signup">Sign Up</TabsTrigger>
                             </TabsList>
-                            <FormProvider {...form}>
-                                <TabsContent value="signin">
-                                    <form onSubmit={form.handleSubmit(handleEmailSubmit)} className="space-y-4 mt-4">
-                                        <EmailPasswordFields />
-                                        <Button type="submit" className="w-full" disabled={isLoading}>
-                                            {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                                            Sign In
-                                        </Button>
-                                    </form>
-                                </TabsContent>
-                                <TabsContent value="signup">
-                                     <form onSubmit={form.handleSubmit(handleEmailSubmit)} className="space-y-4 mt-4">
-                                        <SignUpFields />
-                                        <Button type="submit" className="w-full" disabled={isLoading}>
-                                           {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                                            Sign Up
-                                        </Button>
-                                    </form>
-                                </TabsContent>
-                            </FormProvider>
+                            <TabsContent value="signin">
+                                <SignInForm setIsLoading={setIsLoading} isLoading={isLoading} />
+                            </TabsContent>
+                            <TabsContent value="signup">
+                                <SignUpForm setIsLoading={setIsLoading} isLoading={isLoading} />
+                            </TabsContent>
                         </Tabs>
 
                         <div className="relative my-6">
@@ -160,62 +118,123 @@ export default function LoginPage() {
     );
 }
 
-const EmailPasswordFields = () => {
-    const { control } = useFormContext();
+function SignInForm({ setIsLoading, isLoading }: { setIsLoading: (v: boolean) => void, isLoading: boolean }) {
+    const router = useRouter();
+    const { toast } = useToast();
+    const form = useForm<z.infer<typeof signInSchema>>({
+        resolver: zodResolver(signInSchema),
+        defaultValues: { email: '', password: '' },
+    });
+
+    const handleEmailSubmit = async (data: z.infer<typeof signInSchema>) => {
+        setIsLoading(true);
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        toast({ title: 'Login Successful', description: 'Redirecting...' });
+        router.push('/dashboard');
+        setIsLoading(false);
+    };
+
     return (
-        <>
-            <FormField
-                control={control}
-                name="email"
-                render={({ field }) => (
-                    <FormItem>
-                        <FormLabel className="text-white/80">Email</FormLabel>
-                        <FormControl>
-                            <Input type="email" placeholder="you@example.com" {...field} className="bg-white/10 border-white/20 text-white placeholder:text-white/50 focus:ring-white" />
-                        </FormControl>
-                        <FormMessage />
-                    </FormItem>
-                )}
-            />
-            <FormField
-                control={control}
-                name="password"
-                render={({ field }) => (
-                    <FormItem>
-                        <FormLabel className="text-white/80">Password</FormLabel>
-                        <FormControl>
-                            <Input type="password" placeholder="••••••••" {...field} className="bg-white/10 border-white/20 text-white placeholder:text-white/50 focus:ring-white"/>
-                        </FormControl>
-                        <FormMessage />
-                    </FormItem>
-                )}
-            />
-        </>
+        <Form {...form}>
+            <form onSubmit={form.handleSubmit(handleEmailSubmit)} className="space-y-4 mt-4">
+                <FormField
+                    control={form.control}
+                    name="email"
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel className="text-white/80">Email</FormLabel>
+                            <FormControl>
+                                <Input type="email" placeholder="you@example.com" {...field} className="bg-white/10 border-white/20 text-white placeholder:text-white/50 focus:ring-white" />
+                            </FormControl>
+                            <FormMessage />
+                        </FormItem>
+                    )}
+                />
+                <FormField
+                    control={form.control}
+                    name="password"
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel className="text-white/80">Password</FormLabel>
+                            <FormControl>
+                                <Input type="password" placeholder="••••••••" {...field} className="bg-white/10 border-white/20 text-white placeholder:text-white/50 focus:ring-white"/>
+                            </FormControl>
+                            <FormMessage />
+                        </FormItem>
+                    )}
+                />
+                <Button type="submit" className="w-full" disabled={isLoading}>
+                    {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                    Sign In
+                </Button>
+            </form>
+        </Form>
     );
-};
+}
 
-const SignUpFields = () => {
-    const { control } = useFormContext();
+function SignUpForm({ setIsLoading, isLoading }: { setIsLoading: (v: boolean) => void, isLoading: boolean }) {
+    const router = useRouter();
+    const { toast } = useToast();
+    const form = useForm<z.infer<typeof signUpSchema>>({
+        resolver: zodResolver(signUpSchema),
+        defaultValues: { displayName: '', email: '', password: '' },
+    });
+
+    const handleEmailSubmit = async (data: z.infer<typeof signUpSchema>) => {
+        setIsLoading(true);
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        toast({ title: 'Sign Up Successful', description: 'Redirecting...' });
+        router.push('/dashboard');
+        setIsLoading(false);
+    };
+
     return (
-        <>
-            <FormField
-                control={control}
-                name="displayName"
-                render={({ field }) => (
-                    <FormItem>
-                        <FormLabel className="text-white/80">Name</FormLabel>
-                        <FormControl>
-                            <Input type="text" placeholder="Your Name" {...field} className="bg-white/10 border-white/20 text-white placeholder:text-white/50 focus:ring-white" />
-                        </FormControl>
-                        <FormMessage />
-                    </FormItem>
-                )}
-            />
-            <EmailPasswordFields />
-        </>
+        <Form {...form}>
+            <form onSubmit={form.handleSubmit(handleEmailSubmit)} className="space-y-4 mt-4">
+                <FormField
+                    control={form.control}
+                    name="displayName"
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel className="text-white/80">Name</FormLabel>
+                            <FormControl>
+                                <Input type="text" placeholder="Your Name" {...field} className="bg-white/10 border-white/20 text-white placeholder:text-white/50 focus:ring-white" />
+                            </FormControl>
+                            <FormMessage />
+                        </FormItem>
+                    )}
+                />
+                <FormField
+                    control={form.control}
+                    name="email"
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel className="text-white/80">Email</FormLabel>
+                            <FormControl>
+                                <Input type="email" placeholder="you@example.com" {...field} className="bg-white/10 border-white/20 text-white placeholder:text-white/50 focus:ring-white" />
+                            </FormControl>
+                            <FormMessage />
+                        </FormItem>
+                    )}
+                />
+                <FormField
+                    control={form.control}
+                    name="password"
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel className="text-white/80">Password</FormLabel>
+                            <FormControl>
+                                <Input type="password" placeholder="••••••••" {...field} className="bg-white/10 border-white/20 text-white placeholder:text-white/50 focus:ring-white"/>
+                            </FormControl>
+                            <FormMessage />
+                        </FormItem>
+                    )}
+                />
+                <Button type="submit" className="w-full" disabled={isLoading}>
+                    {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                    Sign Up
+                </Button>
+            </form>
+        </Form>
     );
-};
-
-    
-
-    
+}
