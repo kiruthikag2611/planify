@@ -6,15 +6,17 @@ import { useRouter, useParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { ArrowLeft } from "lucide-react";
+import { useQuestionnaire } from "@/context/QuestionnaireProvider";
 
 const subCategories = {
   academics: ["Student", "Professor", "Management"],
-  professional: ["Employee", "Freelancer"],
+  personal: ["Student"],
 };
 
 export default function SubCategoryPage() {
   const router = useRouter();
   const params = useParams();
+  const { setCategory, setSubCategory } = useQuestionnaire();
   const category = Array.isArray(params.category) ? params.category[0] : params.category;
 
   const validCategories = Object.keys(subCategories);
@@ -26,9 +28,15 @@ export default function SubCategoryPage() {
   }
 
   const handleSelect = (sub: string) => {
-    // Here you could store the selection in context or state if needed
-    // For now, it just redirects to the login page.
-    router.push(`/login`);
+    if (category === 'academics' || category === 'personal') {
+      setCategory(category);
+    }
+    if (sub === 'student' || sub === 'professor' || sub === 'management') {
+      setSubCategory(sub.toLowerCase() as "student" | "professor" | "management");
+    }
+
+    const nextPath = `/q/${category}/${sub.toLowerCase()}/0`;
+    router.push(nextPath);
   };
 
   const options = subCategories[category as keyof typeof subCategories];

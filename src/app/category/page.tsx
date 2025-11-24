@@ -1,7 +1,7 @@
 
 import Link from "next/link";
 import { Card, CardHeader, CardTitle } from "@/components/ui/card";
-import { GraduationCap, Briefcase, ArrowLeft } from "lucide-react";
+import { GraduationCap, User, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export default function CategoryPage() {
@@ -25,11 +25,11 @@ export default function CategoryPage() {
               </CardHeader>
             </Card>
           </Link>
-          <Link href="/category/professional">
+          <Link href="/category/personal">
             <Card className="hover:bg-accent/50 hover:border-primary/50 transition-all duration-300 py-8 shadow-md hover:shadow-xl">
               <CardHeader className="items-center gap-4">
-                <Briefcase className="h-12 w-12 text-primary" />
-                <CardTitle className="font-headline text-2xl">Professional</CardTitle>
+                <User className="h-12 w-12 text-primary" />
+                <CardTitle className="font-headline text-2xl">Personal</CardTitle>
               </CardHeader>
             </Card>
           </Link>
