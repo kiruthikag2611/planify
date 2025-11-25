@@ -38,7 +38,6 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from './ui/collapsible';
-import { PlanifyLogo } from './logo';
 
 export function AppSidebar() {
   const pathname = usePathname();
@@ -76,7 +75,7 @@ export function AppSidebar() {
     <>
       <SidebarHeader>
         <div className="flex items-center gap-2">
-          <PlanifyLogo className="h-8" />
+          
           <span className="text-lg font-semibold">Planify</span>
         </div>
       </SidebarHeader>
