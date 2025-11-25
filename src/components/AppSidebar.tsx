@@ -122,7 +122,7 @@ export function AppSidebar() {
               </Collapsible>
             ) : (
               <SidebarMenuItem key={item.href}>
-                <SidebarMenuButton asChild isActive={pathname === item.href}>
+                <SidebarMenuButton asChild isActive={pathname.startsWith(item.href!)}>
                   <Link href={item.href!}>
                     <item.icon />
                     <span>{item.label}</span>

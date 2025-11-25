@@ -63,8 +63,17 @@ const PersonalizedScheduleGenerationInputSchema = z.union([
 
 export type PersonalizedScheduleGenerationInput = z.infer<typeof PersonalizedScheduleGenerationInputSchema>;
 
+const ScheduleEventSchema = z.object({
+  title: z.string(),
+  day: z.enum(["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]),
+  startTime: z.string().regex(/^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/, 'Invalid time format (HH:MM)'),
+  endTime: z.string().regex(/^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/, 'Invalid time format (HH:MM)'),
+  type: z.enum(["Class", "Assignment", "Exam", "Task", "Study Time", "Personal", "Custom"]),
+  description: z.string().optional(),
+});
+
 const PersonalizedScheduleGenerationOutputSchema = z.object({
-  schedule: z.string().describe('The generated personalized schedule.'),
+  schedule: z.array(ScheduleEventSchema).describe('An array of events for the generated personalized schedule.'),
 });
 
 export type PersonalizedScheduleGenerationOutput = z.infer<typeof PersonalizedScheduleGenerationOutputSchema>;
@@ -79,7 +88,7 @@ const prompt = ai.definePrompt({
   name: 'personalizedScheduleGenerationPrompt',
   input: {schema: PersonalizedScheduleGenerationInputSchema},
   output: {schema: PersonalizedScheduleGenerationOutputSchema},
-  prompt: `You are an AI schedule generator. Based on the information provided, create a personalized schedule.
+  prompt: `You are an AI schedule generator. Based on the information provided, create a personalized weekly schedule. The output must be a structured JSON array of event objects. Create at least 10-15 events for the week. Be creative and fill the schedule with relevant activities based on the user's profile.
 
   Here is the information:
   {{#eq category "Personal"}}
@@ -94,6 +103,7 @@ const prompt = ai.definePrompt({
       Email ID: {{{emailId}}}
       Department: {{{department}}}
       Hard Subject: {{{hardSubject}}}
+      Generate a creative and balanced weekly schedule for a student. Include class times, dedicated study sessions (especially for the hard subject), breaks, and some personal/leisure activities.
     {{/eq}}
     {{#eq subCategory "Professor"}}
       College Name: {{{collegeName}}}

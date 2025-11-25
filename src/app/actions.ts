@@ -1,6 +1,6 @@
 'use server';
 
-import { generatePersonalizedSchedule, PersonalizedScheduleGenerationInput } from '@/ai/flows/personalized-schedule-generation';
+import { generatePersonalizedSchedule, PersonalizedScheduleGenerationInput, PersonalizedScheduleGenerationOutput } from '@/ai/flows/personalized-schedule-generation';
 import { suggestScheduleOptimizations, SuggestScheduleOptimizationsInput } from '@/ai/flows/schedule-optimization-suggestions';
 
 export async function createSchedule(data: any) {
