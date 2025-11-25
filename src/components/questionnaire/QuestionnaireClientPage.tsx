@@ -1,7 +1,7 @@
 
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -11,11 +11,12 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Progress } from '@/components/ui/progress';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { createSchedule } from '@/app/actions';
 import { useToast } from '@/hooks/use-toast';
 import { Loader2, ArrowLeft } from 'lucide-react';
 import type { Question } from '@/lib/questions';
+import { Skeleton } from '@/components/ui/skeleton';
 
 type QuestionnaireClientPageProps = {
   category: string;
@@ -36,6 +37,11 @@ export function QuestionnaireClientPage({
   const { answers, updateAnswer, getFormattedAnswers } = useQuestionnaire();
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   const isLastQuestion = questionIndex === totalQuestions - 1;
   const progress = ((questionIndex + 1) / totalQuestions) * 100;
@@ -97,45 +103,55 @@ export function QuestionnaireClientPage({
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-              <FormField
-                control={form.control}
-                name={currentQuestion.id}
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="sr-only">{currentQuestion.question}</FormLabel>
-                    <FormControl>
-                      <Input
-                        type={currentQuestion.type}
-                        placeholder="Type your answer here..."
-                        {...field}
-                        className="text-center text-lg py-6"
-                      />
-                    </FormControl>
-                    <FormMessage className="text-center" />
-                  </FormItem>
-                )}
-              />
-              <div className="flex justify-end items-center">
-                <span className="text-sm text-muted-foreground mr-auto">
-                  {questionIndex + 1} / {totalQuestions}
-                </span>
-                <Button type="submit" disabled={isLoading}>
-                  {isLoading ? (
-                    <>
-                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                      Generating...
-                    </>
-                  ) : isLastQuestion ? (
-                    'Generate Schedule'
-                  ) : (
-                    'Next'
-                  )}
-                </Button>
+          {!isClient ? (
+              <div className="space-y-8">
+                <Skeleton className="h-12 w-full" />
+                <div className="flex justify-end items-center">
+                    <Skeleton className="h-6 w-16 mr-auto" />
+                    <Skeleton className="h-10 w-24" />
+                </div>
               </div>
-            </form>
-          </Form>
+          ) : (
+            <Form {...form}>
+              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+                <FormField
+                  control={form.control}
+                  name={currentQuestion.id}
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="sr-only">{currentQuestion.question}</FormLabel>
+                      <FormControl>
+                        <Input
+                          type={currentQuestion.type}
+                          placeholder="Type your answer here..."
+                          {...field}
+                          className="text-center text-lg py-6"
+                        />
+                      </FormControl>
+                      <FormMessage className="text-center" />
+                    </FormItem>
+                  )}
+                />
+                <div className="flex justify-end items-center">
+                  <span className="text-sm text-muted-foreground mr-auto">
+                    {questionIndex + 1} / {totalQuestions}
+                  </span>
+                  <Button type="submit" disabled={isLoading}>
+                    {isLoading ? (
+                      <>
+                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                        Generating...
+                      </>
+                    ) : isLastQuestion ? (
+                      'Generate Schedule'
+                    ) : (
+                      'Next'
+                    )}
+                  </Button>
+                </div>
+              </form>
+            </Form>
+          )}
         </CardContent>
       </Card>
     </div>
